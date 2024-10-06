@@ -67,12 +67,18 @@
       <div class="content">
         <div class="LifeChips left">
           <LifeChips
-              :chip="chip"
+              :chip="{...chip, type: 'video'}"
+          />
+          <LifeChips
+              :chip="{...chip, type: 'video'}"
           />
         </div>
         <div class="LifeChips right">
           <LifeChips
-              :chip="chip"
+              :chip="{...chip, type: 'photo',url:'https://pic2.zhimg.com/v2-b6399145c80f909e020874d3c670ae44_r.jpg?source=1940ef5c'}"
+          />
+          <LifeChips
+              :chip="{...chip, type: 'photo',url:'https://pic2.zhimg.com/v2-b6399145c80f909e020874d3c670ae44_r.jpg?source=1940ef5c'}"
           />
         </div>
       </div>
@@ -124,7 +130,6 @@ const chip = {
   title: "",
   content: "In this paper, we propose a strategy to solve the load imbalance problem at MapReduce stage that caused from using the default partition algorithm of Hadoop platform. Through using multiple partitioning technique, this proposed strategy can refine the tasks and balance the inputs of reduce stage in the map phase. Furthermore, this proposed strategy can fully employ idle nodes to balance the high load nodes, in order to achieve the optimized job scheduling during the execution process of reduce stage.",
   date: "2021-10-10",
-  type: "photo"
 }
 </script>
 

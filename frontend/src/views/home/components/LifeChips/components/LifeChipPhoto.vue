@@ -1,35 +1,53 @@
 <template>
   <div class="chipP">
-    <div class="ChipBg"></div>
     <div class="ChipLabel">Photo</div>
-    <div class="ChipPhoto"></div>
+    <img class="ChipPhoto" :src="props.chipPhoto.url" alt="">
     <div class="ChipPContent">
       <p>
         nihao
       </p>
     </div>
-    <LifeChipBar />
+    <LifeChipBar
+        :chipBar="chipBar"
+    />
   </div>
 </template>
+
+<script lang="ts" setup>
+import LifeChipBar from "./LifeChipBar.vue";
+
+const chipBar = {
+  headset: false,
+  comment: true,
+  share: true
+}
+// define the interface of properties
+interface ChipPhoto{
+  url?: string;
+  content?: string;
+  pos?: number;
+}
+interface Props {
+  chipPhoto: ChipPhoto;
+}
+const props = defineProps<Props>();
+</script>
 
 <style scoped>
 .chipP {
   width: 100%;
-  min-height: 400px;
+  height: auto;
   display: flex;
   background-color: rgb(255, 255, 255);
   flex-direction: column;
   position: relative;
-  margin: 10px 0;
+  margin-bottom: 20px;
 }
 
 .ChipPhoto {
   width: 100%;
   height: 70%;
-  background-image: url("https://pic2.zhimg.com/v2-b6399145c80f909e020874d3c670ae44_r.jpg?source=1940ef5c");
-  background-size: cover;
-  background-position: center;
-  z-index: 50;
+  z-index: 20;
 }
 
 .ChipPContent {
@@ -37,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  z-index: 20;
   p {
     width: 90%;
   }
@@ -55,16 +73,4 @@
   font-weight: bold;
 }
 
-.ChipBg {
-  position: absolute;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.6), rgba(0, 216, 255, 0.6));
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
 </style>
-
-<script setup>
-
-import LifeChipBar from "./LifeChipBar.vue";
-</script>

@@ -1,6 +1,11 @@
 <template>
-  <LifeChipPhoto v-if="props.chip.type==='photo'"></LifeChipPhoto>
-  <LifeChipPhoto v-if="props.chip.type==='photo'"></LifeChipPhoto>
+  <LifeChipPhoto v-if="props.chip.type==='photo'"
+  :chipPhoto="{
+    url: props.chip.url,
+    content: props.chip.content,
+    pos: props.chip.pos
+  }"
+  ></LifeChipPhoto>
   <!--<LifeChipTXT></LifeChipTXT>-->
   <LifeChipVideo v-if="props.chip.type==='video'"></LifeChipVideo>
 </template>

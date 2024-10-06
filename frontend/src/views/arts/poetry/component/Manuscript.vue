@@ -44,7 +44,6 @@ onMounted(() => {
   width: 90%;
   position: relative;
   min-height: 950px;
-  padding: 0 20px;
   border-bottom: solid 1px #eff480;
   top: -20px;
   display: flex;

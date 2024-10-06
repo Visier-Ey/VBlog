@@ -1,11 +1,10 @@
 echo "System init start"
 
 read -p -r "DB_USER: " DB_USER
-read -p -r "DB_PASSWORD: " DB_PASSWORD
 
 SQL_FILE="./vblog.sql"
 
-mysql -u "${DB_USER}" -p "${DB_PASSWORD}" < $SQL_FILE
+mysql -u "${DB_USER}" -p < $SQL_FILE
 # deal with the database
 
 
@@ -22,33 +21,35 @@ sed -i "s/visier/DB_USER/g" "${FILE_PATH}"
 # -------------------------------------------------
 FILE_PATH="backend/app.js"
 SEARCH_TEXT="127.0.0.1"
-read -p -r "API_HOST: " API_HOST
-sed -i "s/${SEARCH_TEXT}/${API_HOST}/g" "${FILE_PATH}"
+read -p -r "BACKEND_LISTENING_HOST(Backend): " BACKEND_LISTENING_HOST
+sed -i "s/${SEARCH_TEXT}/${BACKEND_LISTENING_HOST}/g" "${FILE_PATH}"
 # -------------------------------------------------
-FILE_PATH="frontend/vite.config.js"
-SEARCH_TEXT="localhost"
-REPLACE_TEXT="0.0.0.0"
-sed -i "s/${SEARCH_TEXT}/${REPLACE_TEXT}/g" "${FILE_PATH}"
-SEARCH_TEXT="80"
-REPLACE_TEXT="8080"
-sed -i "s/${SEARCH_TEXT}/${REPLACE_TEXT}/g" "${FILE_PATH}"
-sed -i "s/open: true/open: false/g" "${FILE_PATH}"
-# deal with the vite.config.js
+# deal with the frontend http/index.js host
 FILE_PATH="frontend/src/http/index.js"
 SEARCH_TEXT="127.0.0.1"
-read -p -r "API_HOST: " API_HOST
-
+read -p -r "API_HOST(Frontend): " API_HOST
 sed -i "s/${SEARCH_TEXT}/${API_HOST}/g" "${FILE_PATH}"
-# deal with the frontend
+# deal with the vite.config.js port
+SEARCH_TEXT="port: 80,"
+read -p -r "PORT(Frontend): " PORT
+sed -i "s/${SEARCH_TEXT}/port: ${PORT},/g" "${FILE_PATH}"
+sed -i "s/open: true/open: false/g" "${FILE_PATH}"
+# deal with the vite.config.js open
+
+SEARCH_TEXT="localhost"
+read -p -r "WEB_LISTENING_HOST(Frontend): " WEB_LISTENING_HOST
+FILE_PATH="frontend/vite.config.js"
+sed -i "s/${SEARCH_TEXT}/${WEB_LISTENING_HOST}/g" "${FILE_PATH}"
+# deal with the frontend web host
 # -------------------------------------------------
 
 cd backend || exit
 npm i
 npm install pm2@latest -g
 
-cd frontend || exit
+cd ../frontend || exit
 npm i
-
+cd ../
 # -------------------------------------------------
 #wirted the start script
 START_SCRIPT="

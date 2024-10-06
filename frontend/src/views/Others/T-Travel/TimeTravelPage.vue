@@ -87,6 +87,14 @@ const activities = [
       'Encapsulated the markdown component'],
     size: 'large',
     timestamp: '2024/10/4',
+  },
+  {
+    title: 'Basic construction completed',
+    content: ['Add the LifeChips component',
+      'Almost completed the LifeChipPhoto and LifeChipVideo components',
+      'Improve the linux initial bash script'],
+    size: 'large',
+    timestamp: '2024/10/4',
   }
 ]
 
