@@ -10,7 +10,7 @@ mysql -u "${DB_USER}" -p "${DB_PASSWORD}" < $SQL_FILE
 
 
 # -------------------------------------------------
-FILE_PATH="../backend/db/index.js"
+FILE_PATH="backend/db/index.js"
 SEARCH_TEXT="localhost"
 read -p -r "DB_HOST: " DB_HOST
 sed -i "s/${SEARCH_TEXT}/${DB_HOST}/g" "${FILE_PATH}"
@@ -20,12 +20,12 @@ sed -i "s/visier/DB_USER/g" "${FILE_PATH}"
 
 # deal with the backend
 # -------------------------------------------------
-FILE_PATH="../backend/app.js"
+FILE_PATH="backend/app.js"
 SEARCH_TEXT="127.0.0.1"
 read -p -r "API_HOST: " API_HOST
 sed -i "s/${SEARCH_TEXT}/${API_HOST}/g" "${FILE_PATH}"
 # -------------------------------------------------
-FILE_PATH="../frontend/vite.config.js"
+FILE_PATH="frontend/vite.config.js"
 SEARCH_TEXT="localhost"
 REPLACE_TEXT="0.0.0.0"
 sed -i "s/${SEARCH_TEXT}/${REPLACE_TEXT}/g" "${FILE_PATH}"
@@ -34,7 +34,7 @@ REPLACE_TEXT="8080"
 sed -i "s/${SEARCH_TEXT}/${REPLACE_TEXT}/g" "${FILE_PATH}"
 sed -i "s/open: true/open: false/g" "${FILE_PATH}"
 # deal with the vite.config.js
-FILE_PATH="../frontend/src/http/index.js"
+FILE_PATH="frontend/src/http/index.js"
 SEARCH_TEXT="127.0.0.1"
 read -p -r "API_HOST: " API_HOST
 
@@ -42,11 +42,11 @@ sed -i "s/${SEARCH_TEXT}/${API_HOST}/g" "${FILE_PATH}"
 # deal with the frontend
 # -------------------------------------------------
 
-cd ../backend || exit
+cd backend || exit
 npm i
 npm install pm2@latest -g
 
-cd ../frontend || exit
+cd frontend || exit
 npm i
 
 # -------------------------------------------------
