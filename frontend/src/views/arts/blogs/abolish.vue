@@ -186,7 +186,7 @@ const onCollapse = () => {
       height: 90%;
     }
 
-    .card {
+    .chip {
       transition: all 0.3s ease;
       width: 45%;
       height: 100%;

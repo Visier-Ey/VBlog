@@ -52,6 +52,7 @@ onMounted(() => {
   filter: blur(100px);
 }
 .header {
+  top: 0;
   width: 100vw;
   display: flex;
   position: fixed;

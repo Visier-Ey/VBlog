@@ -38,11 +38,4 @@ function decrypt(encryptedText) {
     return decryptedText;
 }
 
-// example
-let originalText = 'HelloWorld';
-let encrypted = encrypt(originalText,'love');
-console.log('Encrypted text:', encrypted);
-let decryptText = decrypt(encrypted);
-console.log('Decrypted text:', decryptText);
-
 export {encrypt, decrypt};

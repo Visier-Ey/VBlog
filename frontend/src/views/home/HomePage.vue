@@ -49,8 +49,8 @@
           <!--    nav end        -->
         </div>
       </div>
-      <!--      page card part-->
-      <div class="card">
+      <!--      page profileCard part-->
+      <div class="profileCard">
         <!--    the skeleton screen    -->
         <!--        <div class="skeleton">-->
         <!--          <el-skeleton style="&#45;&#45;el-skeleton-color:grey"/>-->
@@ -65,8 +65,16 @@
       </div>
       <!--      your brief blog here-->
       <div class="content">
-        <el-empty description="description"/>
-        <!--        <BlogBriefs :content="content" :title="Test" url="" />-->
+        <div class="LifeChips left">
+          <LifeChips
+              :chip="chip"
+          />
+        </div>
+        <div class="LifeChips right">
+          <LifeChips
+              :chip="chip"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -81,8 +89,13 @@ import SwitchBoll from "../component/SwitchBoll.vue";
 import Profile from "./components/Profiles/Profile.vue";
 import DynamicBg from "../component/DynamicBg.vue";
 import {encrypt} from "../../component/encryp";
+import LifeChips from "./components/LifeChips/LifeChips.vue";
+
 //  import the briefs of the blog
-const user = localStorage.getItem('user').toUpperCase();
+const user = ref('');
+if (localStorage.getItem('user') === null) {
+  console.log('LocalStorage no user');
+} else user.value = localStorage.getItem('user').toUpperCase();
 const isScaled = ref(true);
 // set background video
 const bg = reactive({
@@ -106,6 +119,13 @@ onMounted(() => {
     document.querySelector('.page.blur').classList.remove('blur');
   }, 500);
 });
+// set the blogChips
+const chip = {
+  title: "",
+  content: "In this paper, we propose a strategy to solve the load imbalance problem at MapReduce stage that caused from using the default partition algorithm of Hadoop platform. Through using multiple partitioning technique, this proposed strategy can refine the tasks and balance the inputs of reduce stage in the map phase. Furthermore, this proposed strategy can fully employ idle nodes to balance the high load nodes, in order to achieve the optimized job scheduling during the execution process of reduce stage.",
+  date: "2021-10-10",
+  type: "photo"
+}
 </script>
 
 
@@ -148,7 +168,7 @@ onMounted(() => {
 .header {
   background-color: rgba(99, 98, 98, 0.1);
   color: white;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: flex-end;
   position: relative;
@@ -259,9 +279,9 @@ onMounted(() => {
 }
 
 
-.card {
+.profileCard {
   background: linear-gradient(45deg, rgba(232, 0, 248, 0.6), rgba(0, 216, 255, 0.6));
-  flex: 30;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,8 +297,28 @@ onMounted(() => {
 }
 
 .content {
-  background: rgba(27, 250, 255, 0.9);
+  background: rgba(27, 250, 255, 0.7);
   padding: 20px;
-  flex: 60;
+  display: flex;
+  height: 100%;
+  justify-content: center
+}
+
+.LifeChips {
+  margin: 20px 5px;
+
+  &.left {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &.right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

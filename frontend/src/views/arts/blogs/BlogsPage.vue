@@ -62,6 +62,9 @@ const test = {
 // test the blogBriefs
 onMounted(() => {
   loadMarkdownFile('blog.md', 'blog')
+  setTimeout(() => {
+    document.querySelector('.main').classList.add('move')
+  }, 700)
 })
 </script>
 
@@ -111,19 +114,34 @@ onMounted(() => {
   width: 98%;
   height: 100%;
   display: flex;
+  justify-content: center;
+}
+
+.main.move {
+  .card {
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right: 0;
+    }
+
+  }
 }
 
 .card {
   height: 100%;
   border: solid 1px white;
+  position: absolute;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .card.left {
-  height: 100%;
-  width: 65%;
-  border: solid 1px white;
+  width: 66%;
+  left: 34%;
   overflow-y: scroll;
+  z-index: 50;
+  transition: all 1s ease;
 
   &::-webkit-scrollbar {
     display: block;
@@ -140,9 +158,12 @@ onMounted(() => {
 }
 
 .card.right {
-  height: 100%;
-  width: 35%;
-  border: solid 1px white;
+  width: 34%;
+  right: 66%;
+  box-shadow: none;
+  border-left: none;
+  z-index: 20;
+  transition: all 0.6s ease;
 }
 
 .blogs {
@@ -152,7 +173,6 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
   border: solid 1px white;
   margin: 10px;
   padding: 10px;

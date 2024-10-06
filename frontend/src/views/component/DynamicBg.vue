@@ -52,7 +52,6 @@ onMounted(() => {
 
 .background {
   top: 0;
-  margin: auto;
   width: 100vw;
   height: 100vw;
   position: fixed;
