@@ -35,6 +35,7 @@
 import {MoreFilled} from '@element-plus/icons-vue'
 import {ref} from 'vue'
 import DynamicBg from "../../component/DynamicBg.vue";
+import {formatDate} from "../../../component/format/formatDate.js";
 
 // set background video
 const bg = {
@@ -47,7 +48,7 @@ const activities = [
   {
     title: 'Basic construction completed',
     content: ['Finished the router', 'Finished the Homepage Skeleton screen', 'Finished the Time-Travel page'],
-    timestamp: '2024/9/39',
+    timestamp: '2024/9/29',
     size: 'large',
     type: 'primary',
     icon: MoreFilled,
@@ -94,25 +95,34 @@ const activities = [
       'Almost completed the LifeChipPhoto and LifeChipVideo components',
       'Improve the linux initial bash script'],
     size: 'large',
-    timestamp: '2024/10/4',
-  }
+    timestamp: '2024/10/6',
+  },
+  {
+    title: 'Basic construction completed',
+    content: ['Continue to improve the lifeChips component'],
+    size: 'large',
+    timestamp: '2024/10/7',
+  }, {
+    title: 'Refactor Work',
+    content: [
+      'Refactor the Homepage',
+      'Refactor SwitchBoll(smooth switch effect)',
+    ],
+    timestamp: '2024/10/13',
+  }, {
+    title: 'Basic construction completed',
+    content: [
+      'Add the UniversalPage',
+      'Add the UniversalBlogBrief',
+      'Add the SpecialBack',
+      'Configured SSL',],
+    timestamp: '2024/10/15',
+  },
 ]
-
-// format date function
-function formatDate(date) {
-  let year = date.getFullYear();
-  let month = String(date.getMonth() + 1).padStart(2, '0'); // 月份是从0开始的
-  let day = String(date.getDate()).padStart(2, '0');
-  let hour = String(date.getHours()).padStart(2, '0');
-  let minute = String(date.getMinutes()).padStart(2, '0');
-  let second = String(date.getSeconds()).padStart(2, '0');
-
-  return `${year}/${month}/${day} ${hour}:${minute}:${second}`;
-}
 
 // back to home function
 
-var now = ref(formatDate(new Date()));
+const now = ref(formatDate(new Date()));
 setInterval(() => {
   now.value = formatDate(new Date());
   console.log(now.value);
@@ -143,9 +153,15 @@ setInterval(() => {
   position: relative;
   color: white;
   top: 50px;
+  left: -50px;
 
   :deep(.el-timeline-item__content) {
     color: white;
+  }
+
+  :deep(.el-timeline-item__timestamp) {
+    color: white;
+    margin-bottom: 20px;
   }
 }
 </style>

@@ -3,7 +3,7 @@ function loadMarkdownFile(path, target) {
     fetch(path)
         .then((response) => response.text())
         .then((text) => {
-            document.getElementById(target).innerHTML = marked(text);
+            target.value.innerHTML = marked(text);
         });
 }
 

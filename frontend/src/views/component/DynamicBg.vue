@@ -59,8 +59,10 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin: 0;
 
   video {
+    object-fit: cover;
     margin: 0;
   }
 }

@@ -1,46 +1,50 @@
 <template>
   <div class="profile-container">
     <Avatar
-        :url="AvatarUrl"
+        :url="{avatarUrl: props.profile.avatarUrl, frameUrl: props.profile.frameUrl}"
     />
     <div class="textArea">
-      <span class="name">{{ user }}</span>
-      <span class="brief">{{ brief }}</span>
+      <span class="name">{{ props.profile.name }}</span>
+      <div class="AdditionalInfo">
+        <div class="age">Age:{{ props.profile.age }}</div>
+        <div class="works">{{ props.profile.work || '' }}</div>
+        <div class="school">{{ props.profile.school || '' }}</div>
+      </div>
+      <span class="brief">{{ props.profile.brief }}</span>
     </div>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Avatar from "./Avatar.vue";
-import {onBeforeMount, reactive, ref} from "vue";
-import {getUser} from '../../../../api/users.js';
+import {ref} from "vue";
 
 const user = ref('');
-const brief =ref("Ah! I guess I have to write something here," +
-    "in fact, I don't know what to write, so I just write something here."+
-    "Let me tell you a story..."+
-    "several years ago,I have said some lover talk to my friend."+
-    "I said 'xiao xiao' to her,and she confused with my call,"+
-    "yes,her name is 'xiao xiao',too."+
-    "I said,'nothing ,I just want you to xiao xiao.'"+
-    "I mean I want you to be happy."+
+const brief = ref("Ah! I guess I have to write something here," +
+    "in fact, I don't know what to write, so I just write something here." +
+    "Let me tell you a story..." +
+    "several years ago,I have said some lover talk to my friend." +
+    "I said 'xiao xiao' to her,and she confused with my call," +
+    "yes,her name is 'xiao xiao',too." +
+    "I said,'nothing ,I just want you to xiao xiao.'" +
+    "I mean I want you to be happy." +
     "I hope you like it.");
-const AvatarUrl = ref({
-  frameUrl: '',
-  avatarUrl: ''
-});
 
-onBeforeMount(() => {
-  getUser().then(res => {
-    user.value = res.data[0].name;
-    brief.value = res.data[0].brief;
-    AvatarUrl.value = {
-      frameUrl: res.data[0].frameUrl,
-      avatarUrl: res.data[0].avatarUrl
-    };
-    localStorage.setItem('user', user.value);
-  });
-});
+interface Profile {
+  name: string;
+  brief: string;
+  age: number;
+  work?: string;
+  school?: string;
+  frameUrl?: string;
+  avatarUrl?: string;
+}
+
+interface Props {
+  profile: Profile;
+}
+
+const props = defineProps<Props>();
 </script>
 
 <style scoped>
@@ -70,6 +74,18 @@ onBeforeMount(() => {
   .brief {
     font-size: 20px;
     text-align: left;
+  }
+  .AdditionalInfo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 10px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    & *{
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
   }
 }
 </style>

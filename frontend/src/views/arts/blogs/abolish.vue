@@ -5,7 +5,7 @@
   <div class="background">
     <!--   Set the First letter of blogger-->
     <div class="name">
-      {{ encrypt(user, 'wxx_lyt') }}
+      {{ zeroWidthEncrypt(user, 'wxx_lyt') }}
     </div>
   </div>
   <!-- the formal part -->
@@ -64,7 +64,7 @@
 import {ArrowLeft} from '@element-plus/icons-vue'
 import BlogBriefs from "./components/BlogBriefs.vue";
 import DynamicBg from "../../component/DynamicBg.vue";
-import {encrypt} from "../../../component/encryp";
+import {zeroWidthEncrypt} from "../../../component/encryp";
 // set user
 const user = localStorage.getItem('user').toUpperCase();
 //  set the background

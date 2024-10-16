@@ -1,12 +1,10 @@
 <template>
   <div class="chipP">
     <div class="ChipLabel">Photo</div>
-    <img class="ChipPhoto" :src="props.chipPhoto.url" alt="">
-    <div class="ChipPContent">
-      <p>
-        nihao
-      </p>
-    </div>
+    <img class="ChipPhoto" :src="props.chipPhoto.url" alt="" @click="clickPhoto">
+    <LifeChipContent
+    :chipContent="chipPhoto"
+    />
     <LifeChipBar
         :chipBar="chipBar"
     />
@@ -15,6 +13,8 @@
 
 <script lang="ts" setup>
 import LifeChipBar from "./LifeChipBar.vue";
+import {Chip} from "../interfaces";
+import LifeChipContent from "./LifeChipContent.vue";
 
 const chipBar = {
   headset: false,
@@ -22,15 +22,16 @@ const chipBar = {
   share: true
 }
 // define the interface of properties
-interface ChipPhoto{
-  url?: string;
-  content?: string;
-  pos?: number;
-}
+
 interface Props {
-  chipPhoto: ChipPhoto;
+  chipPhoto: Chip;
 }
 const props = defineProps<Props>();
+
+// define the function to handle the click event
+const clickPhoto = () => {
+  document.querySelector('.ChipPhoto')?.classList.toggle('clickPhoto');
+}
 </script>
 
 <style scoped>
@@ -42,22 +43,17 @@ const props = defineProps<Props>();
   flex-direction: column;
   position: relative;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 .ChipPhoto {
   width: 100%;
   height: 70%;
   z-index: 20;
-}
-
-.ChipPContent {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
-  p {
-    width: 90%;
+  transition: all 0.5s ease ;;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
   }
 }
 

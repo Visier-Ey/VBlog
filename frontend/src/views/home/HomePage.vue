@@ -4,42 +4,56 @@
     <DynamicBg
         :bg="bg"
     />
+    <CollapseSidebar class="collapseSidebar"/>
     <div class="container">
       <div class="header">
         <!--        set blogger name-->
         <div class="user">
-          {{ encrypt(user, 'wxx_lyt') }}
+          {{ zeroWidthEncrypt(profile.nick.toUpperCase(), 'zyl') }}
         </div>
         <div class="nav">
           <!--          you know, the nav options-->
           <div class="menu">
-            <div class="link" data-custom-id="home">{{ encrypt('HOME', 'visier') }}</div>
-            <div class="link list" data-custom-id="blogs" data-custom-amount="2">{{ encrypt('ARTS', 'visier') }}
-              <div class="group">
-                <div class="link" data-custom-id="blogs" @click="pageJump($event)">{{ encrypt('BLOGS', 'visier') }}
-                </div>
-                <div class="link" data-custom-id="poetry" @click="pageJump($event)">{{ encrypt('POETRY', 'visier') }}
-                </div>
-              </div>
+            <div class="link" data-custom-id="home">{{ zeroWidthEncrypt('HOME', 'visier') }}</div>
+            <div class="link" data-custom-id="recent" data-custom-amount="3" @click="pageJump">
+              {{ zeroWidthEncrypt('RECENT', 'visier') }}
             </div>
+            <!--            <div class="link list" data-custom-id="arts" data-custom-amount="2">{{ encrypt('ARTS', 'visier') }}-->
+            <!--              <div class="group">-->
+            <!--                <div class="link" data-custom-id="blogs" @click="pageJump($event)">{{ encrypt('BLOGS', 'visier') }}-->
+            <!--                </div>-->
+            <!--                <div class="link" data-custom-id="poetry" @click="pageJump($event)">{{ encrypt('POETRY', 'visier') }}-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <!--    Work List        -->
-            <div class="link list" data-custom-id="List" data-custom-amount="3">{{ encrypt('WORKS', 'visier') }}
+            <div class="link list" data-custom-id="Works" data-custom-amount="3">{{
+                zeroWidthEncrypt('WORKS', 'visier')
+              }}
               <div class="group">
-                <div class="link" data-custom-id="JS">{{ encrypt('JS', 'visier') }}</div>
-                <div class="link" data-custom-id="SQL">{{ encrypt('SQL', 'visier') }}</div>
-                <div class="link" data-custom-id="C++">{{ encrypt('C++', 'visier') }}</div>
+                <div class="link" data-custom-id="JS" @click="pageJump">{{ zeroWidthEncrypt('JS', 'visier') }}</div>
+                <div class="link" data-custom-id="C-C++" @click="pageJump">{{
+                    zeroWidthEncrypt('C/C++', 'visier')
+                  }}
+                </div>
+                <div class="link" data-custom-id="DBMS" @click="pageJump">{{
+                    zeroWidthEncrypt('DBMS', 'visier')
+                  }}
+                </div>
               </div>
             </div>
             <!--      Other List        -->
-            <div class="link list" data-custom-id="list" data-custom-amount="3">{{ encrypt('OTHERS', 'visier') }}
+            <div class="link list" data-custom-id="others" data-custom-amount="3">{{
+                zeroWidthEncrypt('OTHERS', 'visier')
+              }}
               <div class="group">
-                <div class="link" data-custom-id="TimeTravel" @click="pageJump($event)">
-                  {{ encrypt('T-TRAVEL', 'visier') }}
+                <div class="link" data-custom-id="TimeTravel" @click="pageJump">
+                  {{ zeroWidthEncrypt('T-TRAVEL', 'visier') }}
                 </div>
-                <div class="link" data-custom-id="contact" @click="pageJump($event)">
-                  {{ encrypt('CONTACT', 'visier') }}
+                <div class="link" data-custom-id="contact" @click="pageJump">
+                  {{ zeroWidthEncrypt('CONTACT', 'visier') }}
                 </div>
-                <div class="link" data-custom-id="about" @click="pageJump($event)">{{ encrypt('ABOUT', 'visier') }}
+                <div class="link" data-custom-id="about" @click="pageJump">{{ zeroWidthEncrypt('ABOUT', 'visier') }}
                 </div>
               </div>
             </div>
@@ -51,38 +65,29 @@
       </div>
       <!--      page profileCard part-->
       <div class="profileCard">
-        <!--    the skeleton screen    -->
-        <!--        <div class="skeleton">-->
-        <!--          <el-skeleton style="&#45;&#45;el-skeleton-color:grey"/>-->
-        <!--          <br/>-->
-        <!--          <el-skeleton style="&#45;&#45;el-skeleton-circle-size: 100px;&#45;&#45;el-skeleton-color:grey">-->
-        <!--            <template #template>-->
-        <!--              <el-skeleton-item variant="circle"/>-->
-        <!--            </template>-->
-        <!--          </el-skeleton>-->
-        <!--        </div>-->
-        <Profile></Profile>
+        <Profile
+            :profile="profile"
+        ></Profile>
       </div>
       <!--      your brief blog here-->
       <div class="content">
         <div class="LifeChips left">
           <LifeChips
-              :chip="{...chip, type: 'video'}"
-          />
-          <LifeChips
-              :chip="{...chip, type: 'video'}"
+              v-for="item in lifeChipsLeft"
+              :chip="item"
+              :key="item.id"
           />
         </div>
         <div class="LifeChips right">
           <LifeChips
-              :chip="{...chip, type: 'photo',url:'https://pic2.zhimg.com/v2-b6399145c80f909e020874d3c670ae44_r.jpg?source=1940ef5c'}"
-          />
-          <LifeChips
-              :chip="{...chip, type: 'photo',url:'https://pic2.zhimg.com/v2-b6399145c80f909e020874d3c670ae44_r.jpg?source=1940ef5c'}"
+              v-for="item in lifeChipsRight"
+              :chip="item"
+              :key="item.id"
           />
         </div>
       </div>
     </div>
+    <div class="scrollToTop" @click="scrollToTop"><span class="ArrowLeftTop">⟨⟨</span>Top</div>
   </div>
   <SwitchBoll :scale="isScaled"></SwitchBoll>
 </template>
@@ -90,18 +95,31 @@
 <script lang="ts" setup>
 //   here set the blogger name
 import router from "../../router/index.js";
-import {onMounted, reactive, ref} from "vue";
+import {computed, onBeforeMount, onMounted, reactive, ref} from "vue";
 import SwitchBoll from "../component/SwitchBoll.vue";
 import Profile from "./components/Profiles/Profile.vue";
 import DynamicBg from "../component/DynamicBg.vue";
-import {encrypt} from "../../component/encryp";
+import {zeroWidthEncrypt} from "../../component/encryp";
 import LifeChips from "./components/LifeChips/LifeChips.vue";
-
+import {getLifeChips} from '../../api/lifeChips';
+import {getUser} from '../../api/users';
+import CollapseSidebar from "../component/CollapseSidebar.vue";
 //  import the briefs of the blog
-const user = ref('');
-if (localStorage.getItem('user') === null) {
-  console.log('LocalStorage no user');
-} else user.value = localStorage.getItem('user').toUpperCase();
+const lifeChips = ref([]);
+
+
+const profile = ref({
+  name: '',
+  nick: '',
+  brief: '',
+  work: '',
+  school: '',
+  age: 0,
+  lover: '',
+  like: '',
+  frameUrl: '',
+  avatarUrl: ''
+});
 const isScaled = ref(true);
 // set background video
 const bg = reactive({
@@ -115,15 +133,36 @@ const pageJump = (e) => {
   isScaled.value = false;
   // set the blur effect
   document.querySelector('.page').classList.add('blur');
+  console.log(e.target.dataset.customId);
   setTimeout(() => {
     router.push({name: e.target.dataset.customId});
   }, 500);
 }
+// set the scroll to top function
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+onBeforeMount(() => {
+  getUser().then(res => {
+    localStorage.setItem('user', res.data[0].name);
+    profile.value = res.data[0];
+  });
+})
 onMounted(() => {
   // set the EnterScale effect
   setTimeout(() => {
     document.querySelector('.page.blur').classList.remove('blur');
   }, 500);
+  // get the lifeChips
+  getLifeChips().then(res => {
+    res.data.forEach((item, index) => {
+      item.date = new Date(item.date).toLocaleDateString();
+    });
+    lifeChips.value = res.data;
+  });
 });
 // set the blogChips
 const chip = {
@@ -131,6 +170,12 @@ const chip = {
   content: "In this paper, we propose a strategy to solve the load imbalance problem at MapReduce stage that caused from using the default partition algorithm of Hadoop platform. Through using multiple partitioning technique, this proposed strategy can refine the tasks and balance the inputs of reduce stage in the map phase. Furthermore, this proposed strategy can fully employ idle nodes to balance the high load nodes, in order to achieve the optimized job scheduling during the execution process of reduce stage.",
   date: "2021-10-10",
 }
+const lifeChipsLeft = ref(computed(() => {
+  return lifeChips.value.filter((item, index) => index % 2 === 0);
+}));
+const lifeChipsRight = ref(computed(() => {
+  return lifeChips.value.filter((item, index) => index % 2 !== 0);
+}));
 </script>
 
 
@@ -160,18 +205,44 @@ const chip = {
   align-items: center;
 
   .container {
-    margin-top: 50px;
+    margin-top: 30px;
     width: 1300px;
     display: flex;
     flex: 1;
     flex-direction: column;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+    transition: all 0.6s ease;
+  }
+
+  .collapseSidebar:hover + .container {
+    transform: skewY(-5deg) translateY(20%) translateX(30%) rotateY(20deg);
+
+    .header.user {
+      transform: skewX(-30deg);
+    }
+
+    & + .scrollToTop {
+      transform: translateX(800px) translateY(800px);
+    }
+  }
+}
+
+@keyframes flowed {
+  0% {
+    transform: translateY(0) rotateY(0) skewY(-0.4deg);
+  }
+  50% {
+    transform: translateY(4px) rotateY(2deg) skewY(0.2deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(0) skewY(-0.4deg);
   }
 }
 
 
 .header {
-  background-color: rgba(99, 98, 98, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.6);
   color: white;
   height: 80px;
   display: flex;
@@ -186,6 +257,7 @@ const chip = {
     font-weight: 70;
     font-size: 70px;
     top: -25px;
+    transform: skewX(-20deg);
   }
 
   .nav {
@@ -231,22 +303,8 @@ const chip = {
         overflow-y: hidden;
         height: 0;
 
-        .link {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100px;
-          color: white;
-          margin: 0;
-          padding: 0 10px;
-          transition: all 0.3s ease;
-          font-family: "Berlin Sans FB Demi";
-          font-size: 20px;
-
-          &:hover {
-            background-color: #000000;
-            cursor: pointer;
-          }
+        .link:hover {
+          cursor: pointer;
         }
       }
     }
@@ -256,16 +314,17 @@ const chip = {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100px;
+      width: 120px;
       color: white;
       margin: 0;
       padding: 0 10px;
       transition: all 0.3s ease;
       font-family: "Berlin Sans FB Demi";
-      font-size: 20px;
+      font-size: 25px;
+      background: inherit;
 
       &:hover {
-        background-color: #000000;
+        background-color: rgba(69, 69, 69, 0.5);
         cursor: pointer;
       }
     }
@@ -302,11 +361,12 @@ const chip = {
 }
 
 .content {
+  position: relative;
   background: rgba(27, 250, 255, 0.7);
   padding: 20px;
   display: flex;
   height: 100%;
-  justify-content: center
+  justify-content: center;
 }
 
 .LifeChips {
@@ -324,6 +384,39 @@ const chip = {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+.scrollToTop {
+  width: 30px;
+  height: 100px;
+  position: fixed;
+  bottom: 20px;
+  right: 110px;
+  background-color: rgba(0, 226, 255, 0.7);
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.7s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+
+  &:hover {
+    background-color: rgba(0, 255, 255, 0.8);
+  }
+
+  .ArrowLeftTop {
+    margin: 0;
+    transform: rotate(90deg);
+    overflow: visible;
+    height: 100%;
+    font-size: 50px;
+    position: relative;
+    top: 0;
+    left: 5px;
   }
 }
 </style>

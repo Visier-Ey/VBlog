@@ -1,92 +1,74 @@
 <template>
-  <div class="chip">
-    <div class="chipHeader">
-      <span class="chipTitle">{{ props.chip.title }}</span>
-      <span class="date">{{ props.chip.date }}</span>
-      <!--      <span class="divider"></span>-->
-    </div>
-    <!--  the body part  -->
-    <div class="chipBody">
-      <span class="chipContent">{{ props.chip.content }}</span>
-
-    </div>
-    <!--  footer ,maybe like something else  -->
-    <div class="chipFooter">
-
-    </div>
+  <div class="chipT">
+    <div class="ChipLabel">TXT</div>
+    <div class="lifeChipTXT" ref="lifeChipTXT"></div>
+    <LifeChipBar
+        :chipBar="chipBar"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 
 // define the interface of properties
-import {onMounted} from "vue";
-
-interface Chip {
-  title?: string;
-  content?: string;
-  url?: string;
-  date?: string;
-  pos?: number;
+import {onMounted, ref} from "vue";
+import {Chip} from "../interfaces";
+import {loadMarkdownFile} from "../../../../../component/markdown";
+import LifeChipBar from "./LifeChipBar.vue";
+const chipBar = {
+  headset: false,
+  comment: true,
+  share: true
 }
+// define the props
 interface Props {
-  chip: Chip;
+  chipTXT: Chip;
 }
-// define the properties
 const props = defineProps<Props>();
 
+const lifeChipTXT = ref<HTMLDivElement | null>(null);
+
 onMounted(() => {
-  if (props.chip.pos) {
-    if (props.chip.pos % 2 === 0) {
-      document.querySelector('.chip').classList.add('right');
-    }
-  }
+  loadMarkdownFile(props.chipTXT.url, lifeChipTXT);
 });
 </script>
 
 <style scoped>
-
-.chip.right{
-  width: 400px;
-}
-.chip {
-  width: 700px;
+.chipT {
+  width: 100%;
   height: auto;
   display: flex;
+  background-color: rgb(255, 255, 255);
   flex-direction: column;
-  justify-content: flex-start;
-  padding-left: 20px;
-  margin:20px 5px ;
-  background: linear-gradient(45deg, rgba(232, 0, 248, 0.6), rgba(0, 216, 255, 0.6));
-  .chipHeader{
-    padding: 0 20px;
-    position: relative;
-    top: 20px;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: solid 2px grey;
-    .chipTitle{
-      font-size: 30px;
-      font-weight: bold;
-      font-family: "Century Schoolbook";
-    }
-    .date{
-      font-size: 12px;
-      color: grey;
-    }
-  }
-  .chipBody{
-    text-align: left;
-    width: 80%;
-    padding: 20px;
-    font-size: 20px;
-    font-family: "Century Schoolbook";
-    .content{
-      line-height: 1.5;
-    }
-  }
+  position: relative;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
 
+.lifeChipTXT {
+  width: 100%;
+  height: 70%;
+  z-index: 20;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 20px 20px 20px 50px
+}
+
+.ChipLabel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 5px 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+:deep(pre){
+  white-space: pre-wrap;
+  font-size: 16px;
+  font-family: "Cambria Math";
+  font-weight: bold;
 }
 </style>

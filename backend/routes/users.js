@@ -1,5 +1,4 @@
-const profilesHandle = require('../route_handles/usersHandle').profilesHandle;
-const usersHandle = require('../route_handles/usersHandle').usersHandle;
+const { profilesHandle, usersHandle } = require('../route_handles/usersHandle');
 
 var express = require('express');
 var router = express.Router();

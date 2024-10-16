@@ -10,9 +10,9 @@
       <span class="slices-char">|</span>
       <span> {{route.meta.title}} </span>
     </div>
+    <Footer />
     <router-view/>
   </div>
-  <Footer />
   <SwitchBoll :scale="isScaled"></SwitchBoll>
 </template>
 
@@ -47,6 +47,8 @@ onMounted(() => {
 <style scoped>
 .blur-bg{
   transition: all 0.5s ease;
+  height: 100vh;
+  width: 100vw;
 }
 .blur-bg.blur{
   filter: blur(100px);

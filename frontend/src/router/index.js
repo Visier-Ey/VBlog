@@ -11,6 +11,31 @@ const routes = [
         component: () => import('../views/home/HomePage.vue')
     },
     {
+        name: 'works',
+        path: '/works',
+        children: [
+            {
+                name: 'JS',
+                path: '/JS',
+                component: () => import('../views/works/JS/JSPage.vue'),
+                meta: {title: 'JS'}
+            },
+            {
+                name: 'C-C++',
+                path: '/C-C++',
+                component: () => import('../views/works/C++/C++Page.vue'),
+                meta: {title: 'C/C++'}
+            },
+            {
+                name: 'DBMS',
+                path: '/DBMS',
+                component: () => import('../views/works/DBMS/DBMSPage.vue'),
+                meta: {title: 'DBMS'}
+            }
+            //     works routes
+        ]
+    },
+    {
         name: 'others',
         path: '/others',
         component: () => import('../views/component/Nav.vue'),
@@ -52,7 +77,14 @@ const routes = [
                     }
                 ]
             },
+            {
+                name: 'recent',
+                path: '/recent',
+                component: () => import('../views/recent/RecentPage.vue'),
+                meta: {title: 'Recent'}
+            },
 
+            // others routes
         ]
     }
 

@@ -1,7 +1,6 @@
 const db = require('../db/index.js');
-
-const baseUrl = 'http://127.0.0.1:3000';
-
+const sourceBaseUrl = require('../config/index.js').serverBaseUrl;
+const baseUrl = sourceBaseUrl
 
 // return the avatar and frame urls
 exports.profilesHandle = (req, res) => {

@@ -1,9 +1,10 @@
-<script setup>
-import {onMounted} from "vue";
+<script lang="ts" setup>
+import {onMounted, ref} from "vue";
 import {loadMarkdownFile} from "../../../component/markdown/index.js";
 
+const aboutMd = ref < HTMLDivElement | null > (null);
 onMounted(() => {
-  loadMarkdownFile('about.md', 'markdown-content');
+  loadMarkdownFile('about.md', aboutMd);
 });
 </script>
 
@@ -11,7 +12,7 @@ onMounted(() => {
   <div class="page">
     <div class="container">
       <div class="about">
-        <div id="markdown-content"></div>
+        <div id="markdown-content" ref="aboutMd"></div>
       </div>
     </div>
   </div>
@@ -36,13 +37,14 @@ onMounted(() => {
   background: #2b2828;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow-y: scroll;
 }
 
 .about {
+  margin-top: 100px;
   width: 70%;
-  height: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,13 +55,16 @@ onMounted(() => {
   font-size: 15px;
   border-left: solid 1px #f0f0f0;
   border-right: solid 1px #f0f0f0;
-  #markdown-content{
+
+  #markdown-content {
     width: 80%;
   }
+
   span {
     width: 90%;
     z-index: 5;
   }
+
   pre {
     width: 90%;
     text-align: left;

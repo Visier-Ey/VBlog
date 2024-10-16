@@ -7,3 +7,4 @@ export const getBlogs = () => {
 export const getPoetry = () => {
     return instance.get('/arts/poetry');
 }
+

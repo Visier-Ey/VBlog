@@ -1,4 +1,5 @@
 <template>
+<!-- scale timing in the logical control part Nav -->
   <div class="boll scale">
 
   </div>
@@ -20,7 +21,7 @@ onMounted(() => {
   if (props.scale) {
     setTimeout(() => {
       document.querySelector(".boll.scale").classList.remove("scale")
-    }, 500)
+    }, 600)
   }
 })
 </script>
@@ -36,11 +37,12 @@ onMounted(() => {
   height: 1px;
   border-radius: 50%;
   background: linear-gradient(90deg, #0000ff,10%, #4b0082,60%, #8f00ff);
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
 }
 
 .boll.scale {
   transform: scale(6000);
+  filter:blur(500px);
 }
 
 </style>

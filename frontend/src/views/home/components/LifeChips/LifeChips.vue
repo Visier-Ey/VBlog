@@ -1,29 +1,23 @@
 <template>
   <LifeChipPhoto v-if="props.chip.type==='photo'"
-  :chipPhoto="{
-    url: props.chip.url,
-    content: props.chip.content,
-    pos: props.chip.pos
-  }"
-  ></LifeChipPhoto>
+                 :chipPhoto="props.chip"
+  />
   <!--<LifeChipTXT></LifeChipTXT>-->
-  <LifeChipVideo v-if="props.chip.type==='video'"></LifeChipVideo>
+  <LifeChipVideo v-if="props.chip.type==='video'"
+                 :chipVideo="props.chip"
+  />
+  <LifeChipTXT v-if="props.chip.type==='TXT'"
+               :chipTXT="props.chip"
+  />
 </template>
 
 <script lang="ts" setup>
-
 import LifeChipPhoto from "./components/LifeChipPhoto.vue";
 import LifeChipVideo from "./components/LifeChipVideo.vue";
+import {Chip} from "./interfaces";
+import LifeChipTXT from "./components/LifeChipTXT.vue";
 
-interface Chip {
-  title?: string;
-  content?: string;
-  url?: string;
-  date?: string;
-  pos?: number;
-  type: string;
-}
-
+// define the interface of properties
 interface Props {
   chip: Chip;
 }

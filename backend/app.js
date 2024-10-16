@@ -7,6 +7,9 @@ var cors = require("cors");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var artsRouter = require('./routes/arts');
+var lifeChipsRouter = require('./routes/lifeChips');
+var recentRouter = require('./routes/recent');
+var serverConfig = require('./config/index.js').serverConfig;
 var app = express();
 
 // view engine setup
@@ -23,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/arts', artsRouter);
-
+app.use('/lifeChips', lifeChipsRouter);
+app.use('/recent', recentRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -41,11 +45,11 @@ app.use(function(err, req, res, next) {
 });
 
 // set the host and port to run the server
-const host = '127.0.0.1';
+const host = '0.0.0.0';
 const port = 3000;
 
-app.listen(port, host, () => {
-  console.log(`Server is running at http://${host}:${port}/`);
+app.listen(serverConfig.port, serverConfig.host, () => {
+  console.log(`Server is running at http://${serverConfig.host}:${serverConfig.port}/`);
 });
 
 module.exports = app;

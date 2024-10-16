@@ -5,7 +5,7 @@
   <div class="background">
     <!--   Set the First letter of blogger-->
     <div class="name">
-      {{ encrypt(user, 'wxx_lyt') }}
+      {{ zeroWidthEncrypt(user, 'wxx_lyt') }}
     </div>
   </div>
   <!-- the formal part -->
@@ -17,7 +17,7 @@
       <div class="main">
         <div class="card left">
           <div class="blogs">
-            <div id="blog">
+            <div id="blog" ref="blog">
 
             </div>
           </div>
@@ -35,11 +35,13 @@
 
 <script lang="ts" setup>
 import DynamicBg from "../../component/DynamicBg.vue";
-import {encrypt} from "../../../component/encryp";
+import {zeroWidthEncrypt} from "../../../component/encryp";
 import {loadMarkdownFile} from "../../../component/markdown";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
+import {getBlogs} from "../../../api/arts.js";
 // set user
 const user = localStorage.getItem('user').toUpperCase();
+const blog = ref<HTMLDivElement | null>(null);
 //  set the background
 const bg = {
   poster: '',
@@ -61,7 +63,11 @@ const test = {
 }
 // test the blogBriefs
 onMounted(() => {
-  loadMarkdownFile('blog.md', 'blog')
+  getBlogs().then(res => {
+    res.data.forEach((item) => {
+      loadMarkdownFile(item.url, blog)
+    })
+  })
   setTimeout(() => {
     document.querySelector('.main').classList.add('move')
   }, 700)

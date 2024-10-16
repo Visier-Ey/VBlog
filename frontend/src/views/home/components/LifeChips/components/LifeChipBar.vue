@@ -46,7 +46,7 @@ onMounted(() => {
     margin: 0 1%;
   }
   .el-icon{
-    transition: transform 0.1s ease;
+    transition: transform 0.2s ease;
     font-size: 40px;
     color: black;
     &:hover {
