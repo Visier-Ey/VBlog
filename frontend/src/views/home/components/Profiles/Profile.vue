@@ -6,8 +6,8 @@
     <div class="textArea">
       <span class="name">{{ props.profile.name }}</span>
       <div class="AdditionalInfo">
-        <div class="age">Age:{{ props.profile.age }}</div>
-        <div class="works">{{ props.profile.work || '' }}</div>
+        <div class="age">Year:{{ props.profile.age }}</div>
+        <div class="works">Work:{{ props.profile.work || '' }}</div>
         <div class="school">{{ props.profile.school || '' }}</div>
       </div>
       <span class="brief">{{ props.profile.brief }}</span>

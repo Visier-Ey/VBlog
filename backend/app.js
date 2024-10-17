@@ -9,7 +9,9 @@ var usersRouter = require('./routes/users');
 var artsRouter = require('./routes/arts');
 var lifeChipsRouter = require('./routes/lifeChips');
 var recentRouter = require('./routes/recent');
+var visitorRouter = require('./routes/visitors');
 var serverConfig = require('./config/index.js').serverConfig;
+const { jwtMiddleware } = require('./jwt/index.js');
 var app = express();
 
 // view engine setup
@@ -23,11 +25,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(jwtMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/arts', artsRouter);
 app.use('/lifeChips', lifeChipsRouter);
 app.use('/recent', recentRouter);
+app.use('/visitors', visitorRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

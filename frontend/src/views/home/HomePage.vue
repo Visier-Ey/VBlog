@@ -1,6 +1,5 @@
 <template>
   <div class="page blur">
-    <!--    set the background decorate-->
     <DynamicBg
         :bg="bg"
     />
@@ -103,7 +102,7 @@ import {zeroWidthEncrypt} from "../../component/encryp";
 import LifeChips from "./components/LifeChips/LifeChips.vue";
 import {getLifeChips} from '../../api/lifeChips';
 import {getUser} from '../../api/users';
-import CollapseSidebar from "../component/CollapseSidebar.vue";
+import CollapseSidebar from "../component/CollapseSidebar/CollapseSidebar.vue";
 //  import the briefs of the blog
 const lifeChips = ref([]);
 
@@ -147,7 +146,6 @@ const scrollToTop = () => {
 }
 onBeforeMount(() => {
   getUser().then(res => {
-    localStorage.setItem('user', res.data[0].name);
     profile.value = res.data[0];
   });
 })
@@ -392,7 +390,7 @@ const lifeChipsRight = ref(computed(() => {
   height: 100px;
   position: fixed;
   bottom: 20px;
-  right: 110px;
+  right: calc(50% - 740px);
   background-color: rgba(0, 226, 255, 0.7);
   color: white;
   padding: 10px 20px;

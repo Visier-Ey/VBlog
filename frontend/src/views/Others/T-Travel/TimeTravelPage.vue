@@ -117,7 +117,17 @@ const activities = [
       'Add the SpecialBack',
       'Configured SSL',],
     timestamp: '2024/10/15',
-  },
+  },{
+  title: 'Basic construction completed',
+    content:[
+        'Add the VisitorLoginPage',
+        'Add the VisitorRegisterPage',
+        'Add the JwtToken authentication',
+        'Add the Various api',
+    ],
+    color: 'green',
+    timestamp: '2024/10/17',
+  }
 ]
 
 // back to home function
