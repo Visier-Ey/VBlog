@@ -1,5 +1,5 @@
 <template>
-  <div class="page blur">
+  <div class="page blurPage" ref="page">
     <DynamicBg
         :bg="bg"
     />
@@ -13,9 +13,9 @@
         <div class="nav">
           <!--          you know, the nav options-->
           <div class="menu">
-            <div class="link" data-custom-id="home">{{ zeroWidthEncrypt('HOME', 'visier') }}</div>
+            <div class="link" data-custom-id="home">{{ zeroWidthEncrypt('HOME', 'visier homeless') }}</div>
             <div class="link" data-custom-id="recent" data-custom-amount="3" @click="pageJump">
-              {{ zeroWidthEncrypt('RECENT', 'visier') }}
+              {{ zeroWidthEncrypt('RECENT', 'miss my xx') }}
             </div>
             <!--            <div class="link list" data-custom-id="arts" data-custom-amount="2">{{ encrypt('ARTS', 'visier') }}-->
             <!--              <div class="group">-->
@@ -27,7 +27,7 @@
             <!--            </div>-->
             <!--    Work List        -->
             <div class="link list" data-custom-id="Works" data-custom-amount="3">{{
-                zeroWidthEncrypt('WORKS', 'visier')
+                zeroWidthEncrypt('WORKS', 'damn!')
               }}
               <div class="group">
                 <div class="link" data-custom-id="JS" @click="pageJump">{{ zeroWidthEncrypt('JS', 'visier') }}</div>
@@ -102,10 +102,10 @@ import {zeroWidthEncrypt} from "../../component/encryp";
 import LifeChips from "./components/LifeChips/LifeChips.vue";
 import {getLifeChips} from '../../api/lifeChips';
 import {getUser} from '../../api/users';
-import CollapseSidebar from "../component/CollapseSidebar/CollapseSidebar.vue";
+import CollapseSidebar from "../visitor/component/CollapseSidebar/CollapseSidebar.vue";
 //  import the briefs of the blog
 const lifeChips = ref([]);
-
+const page = ref<HTMLElement | null>(null)
 
 const profile = ref({
   name: '',
@@ -127,40 +127,42 @@ const bg = reactive({
   mp4: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/874400/2fda5d3781c6d198d70775f53809db245151928d.mp4'
 })
 // universal page jump function
-const pageJump = (e) => {
+const pageJump = async (e) => {
   // set the LeaveScale effect
   isScaled.value = false;
   // set the blur effect
-  document.querySelector('.page').classList.add('blur');
-  console.log(e.target.dataset.customId);
+  page.value?.classList.add('blurPage');
   setTimeout(() => {
     router.push({name: e.target.dataset.customId});
   }, 500);
 }
 // set the scroll to top function
-const scrollToTop = () => {
+const scrollToTop = async () => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   });
 }
-onBeforeMount(() => {
+onBeforeMount(async () => {
   getUser().then(res => {
     profile.value = res.data[0];
   });
 })
-onMounted(() => {
+onMounted(async () => {
   // set the EnterScale effect
+  window.scrollTo({
+    top: 1,
+    behavior: 'smooth'
+  });
   setTimeout(() => {
-    document.querySelector('.page.blur').classList.remove('blur');
+    page.value?.classList.remove('blurPage');
   }, 500);
   // get the lifeChips
-  getLifeChips().then(res => {
-    res.data.forEach((item, index) => {
-      item.date = new Date(item.date).toLocaleDateString();
-    });
-    lifeChips.value = res.data;
+  const res = await getLifeChips();
+  res.data.forEach((item, index) => {
+    item.date = new Date(item.date).toLocaleDateString();
   });
+  lifeChips.value = res.data;
 });
 // set the blogChips
 const chip = {
@@ -184,7 +186,7 @@ const lifeChipsRight = ref(computed(() => {
   padding: 0;
 }
 
-.page.blur {
+.page.blurPage {
   filter: blur(100px);
 }
 
@@ -197,13 +199,15 @@ const lifeChipsRight = ref(computed(() => {
   text-align: center;
   color: #2c3e50;
   width: 100vw;
-  height: 100vw;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .container {
+    position: relative;
     margin-top: 30px;
+    margin-bottom: 40px;
     width: 1300px;
     display: flex;
     flex: 1;
@@ -242,7 +246,7 @@ const lifeChipsRight = ref(computed(() => {
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 255, 255, 0.6);
   color: white;
-  height: 80px;
+  height: 50px;
   display: flex;
   justify-content: flex-end;
   position: relative;
@@ -278,6 +282,10 @@ const lifeChipsRight = ref(computed(() => {
       align-items: center;
       overflow-y: hidden;
 
+      &:hover .group {
+        opacity: 1;
+      }
+
       &:hover[data-custom-amount="3"] .group {
         height: 150px;
       }
@@ -297,9 +305,11 @@ const lifeChipsRight = ref(computed(() => {
       .group {
         transition: all 0.3s ease;
         position: absolute;
-        top: 58px;
+        top: 55px;
+        margin: 0;
         overflow-y: hidden;
         height: 0;
+        opacity: 0;
 
         .link:hover {
           cursor: pointer;
@@ -308,7 +318,7 @@ const lifeChipsRight = ref(computed(() => {
     }
 
     .link {
-      height: 100%;
+      height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -343,7 +353,7 @@ const lifeChipsRight = ref(computed(() => {
 
 .profileCard {
   background: linear-gradient(45deg, rgba(232, 0, 248, 0.6), rgba(0, 216, 255, 0.6));
-  height: 600px;
+  height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -389,13 +399,13 @@ const lifeChipsRight = ref(computed(() => {
   width: 30px;
   height: 100px;
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   right: calc(50% - 740px);
   background-color: rgba(0, 226, 255, 0.7);
   color: white;
   padding: 10px 20px;
   cursor: pointer;
-  transition: all 0.7s ease;
+  transition: all 0.6s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;

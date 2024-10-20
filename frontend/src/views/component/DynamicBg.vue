@@ -3,6 +3,7 @@
     <video playsinline autoplay muted loop
            id="video_"
            :poster="poster"
+           ref="video_"
     >
       <source
           :src="webm"
@@ -21,6 +22,7 @@ import {onBeforeMount, onMounted, ref} from "vue";
 const poster = ref("")
 const webm = ref("")
 const mp4 = ref("")
+const video_ = ref<HTMLVideoElement | null>(null)
 
 interface Background {
   poster?: string;
@@ -34,15 +36,13 @@ interface props {
 }
 
 const props = defineProps<props>();
-onBeforeMount(() => {
+onBeforeMount(async () => {
   poster.value = props.bg.poster
   webm.value = props.bg.webm
   mp4.value = props.bg.mp4
 })
-onMounted(() => {
-  const video = document.getElementById('video_') as HTMLVideoElement
-  if (video !== null)
-    video.playbackRate = props.bg.playbackRate || 1
+onMounted(async () => {
+  video_.value!.playbackRate = props.bg.playbackRate || 1
 })
 </script>
 

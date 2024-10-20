@@ -61,8 +61,10 @@ interface Props {
 const props = defineProps<Props>();
 
 onMounted(() => {
-  videoBg.value.addEventListener('click', videoPlay);
-  video.value.addEventListener('ended', () => {
+  videoBg.value.addEventListener('click', async () => {
+    videoPlay();
+  });
+  video.value.addEventListener('ended',async () => {
     videoBg.value.style.display = 'flex';
   });
 })

@@ -5,7 +5,7 @@ const tokenExpiration = '12h';
 
 
 const generateJWT = (user) => {
-    return jwt.sign({id: user.id, username: user.username}, secretKey, {expiresIn: tokenExpiration});
+    return jwt.sign({account:user.account,password:user.password}, secretKey, {expiresIn: tokenExpiration});
 };
 
 const authenticateJWT = (req, res, next) => {
@@ -26,7 +26,7 @@ const authenticateJWT = (req, res, next) => {
 
 const jwtMiddleware = (req, res, next) => {
 
-    const shouldAuthenticate = false;
+    const shouldAuthenticate = req.path === '/visitors/profile';
 
     if (shouldAuthenticate) {
         return authenticateJWT(req, res, next);

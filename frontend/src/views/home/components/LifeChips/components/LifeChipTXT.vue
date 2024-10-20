@@ -28,7 +28,7 @@ const props = defineProps<Props>();
 
 const lifeChipTXT = ref<HTMLDivElement | null>(null);
 
-onMounted(() => {
+onMounted(async () => {
   loadMarkdownFile(props.chipTXT.url, lifeChipTXT);
 });
 </script>

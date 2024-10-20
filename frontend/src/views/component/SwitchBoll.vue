@@ -1,26 +1,26 @@
 <template>
 <!-- scale timing in the logical control part Nav -->
-  <div class="boll scale">
+  <div class="boll scale" ref="boll">
 
   </div>
 </template>
 
-<script setup>
-import {onMounted, watch} from "vue";
-
+<script lang="ts" setup>
+import {onMounted, ref, watch} from "vue";
+const boll = ref<HTMLElement | null>(null)
 const props = defineProps({
   scale: Boolean
 });
 watch(() => props.scale, (newVal) => {
   if (!props.scale) {
-    document.querySelector(".boll").classList.add("scale")
+    boll.value?.classList.add("scale")
 
   }
 })
-onMounted(() => {
+onMounted(async () => {
   if (props.scale) {
     setTimeout(() => {
-      document.querySelector(".boll.scale").classList.remove("scale")
+      boll.value?.classList.remove("scale")
     }, 600)
   }
 })
@@ -28,7 +28,7 @@ onMounted(() => {
 
 <style scoped>
 .boll {
-  z-index: 10000;
+  z-index: 2000;
   left: 90vw;
   top: 120vh;
   position: fixed;

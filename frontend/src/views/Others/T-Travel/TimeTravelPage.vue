@@ -127,6 +127,16 @@ const activities = [
     ],
     color: 'green',
     timestamp: '2024/10/17',
+  },
+  {
+    title: 'Basic construction completed',
+    content: [
+      'Add the EmailVerify(backend)',
+      'Add the VisitorPage',
+      'Add the VisitorPageApi'
+    ],
+    color: 'green',
+    timestamp: '2024/10/19',
   }
 ]
 
@@ -145,7 +155,8 @@ setInterval(() => {
 .container {
   position: relative;
   top: 20px;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: flex-start;

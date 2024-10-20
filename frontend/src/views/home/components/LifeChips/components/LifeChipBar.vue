@@ -25,7 +25,7 @@ const commentEle = ref<HTMLDivElement | null>(null);
 const shareEle = ref<HTMLDivElement | null>(null);
 
 const props = defineProps<Props>();
-onMounted(() => {
+onMounted(async () => {
   if (props.chipBar.headset) {
     headsetEle.value.addEventListener('click', props.chipBar.headsetFunc);
   }
@@ -38,7 +38,7 @@ onMounted(() => {
   margin-top: 5px;
   position: relative;
   width: 97%;
-  height: 10%;
+  height: 50px;
   display: flex;
   justify-content: flex-end;
   align-items: center;

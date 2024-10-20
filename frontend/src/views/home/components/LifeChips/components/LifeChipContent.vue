@@ -24,7 +24,9 @@ const props = defineProps<Props>();
 
 <style scoped>
 .ChipContent {
+  position: relative;
   width: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;

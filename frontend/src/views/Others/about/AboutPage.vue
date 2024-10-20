@@ -24,7 +24,8 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vw;
+  min-height: 100vh;
+  height: auto;
   font-size: 80px;
   font-weight: bold;
   color: white;
@@ -39,6 +40,7 @@ onMounted(() => {
   justify-content: center;
   align-items: flex-start;
   overflow-y: scroll;
+  padding-bottom: 100px;
 }
 
 .about {

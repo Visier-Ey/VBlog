@@ -1,5 +1,5 @@
 <template>
-  <div class="blur-bg blur">
+  <div class="blur-bg blur" ref="blurBg">
     <div class="header">
       <div class="back-option" @click="backHome">
         <el-icon :size="30">
@@ -8,9 +8,8 @@
         Back
       </div>
       <span class="slices-char">|</span>
-      <span> {{route.meta.title}} </span>
+      <span> {{ route.meta.title }} </span>
     </div>
-    <Footer />
     <router-view/>
   </div>
   <SwitchBoll :scale="isScaled"></SwitchBoll>
@@ -21,38 +20,41 @@ import {ArrowLeft} from '@element-plus/icons-vue'
 import router from "../../router";
 // set the title of the page in different Routes
 import {useRoute} from "vue-router";
-import {onBeforeMount, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 import SwitchBoll from "./SwitchBoll.vue";
-import Footer from "./Footer.vue";
+
 const route = useRoute();
 const isScaled = ref(true);
+const blurBg = ref<HTMLDivElement | null>(null);
 // back to the home page
-function backHome() {
+const backHome = async () => {
   // set the LeaveScale effect
   isScaled.value = false;
   // set the blur effect
-  document.querySelector('.blur-bg').classList.add('blur');
+  blurBg.value.classList.add('blur');
   setTimeout(() => {
     router.push({name: 'home'});
   }, 500);
 }
-onMounted(() => {
+onMounted(async () => {
   // set the EnterScale effect
   setTimeout(() => {
-    document.querySelector('.blur-bg.blur').classList.remove('blur');
+    blurBg.value.classList.remove('blur');
   }, 500);
 });
 </script>
 
 <style scoped>
-.blur-bg{
+.blur-bg {
   transition: all 0.5s ease;
-  height: 100vh;
+  height: auto;
   width: 100vw;
 }
-.blur-bg.blur{
+
+.blur-bg.blur {
   filter: blur(100px);
 }
+
 .header {
   top: 0;
   width: 100vw;
@@ -61,31 +63,36 @@ onMounted(() => {
   z-index: 1000;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgb(0, 0, 0,0.8);
+  background-color: rgb(0, 0, 0, 0.8);
   height: 60px;
   padding-left: 50px;
-  .back-option{
+
+  .back-option {
     display: flex;
     align-items: center;
     color: white;
     font-size: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    &:hover{
+
+    &:hover {
       transform: scale(1.1);
       color: #0bbd87;
       cursor: pointer;
-      .ArrowLeft{
+
+      .ArrowLeft {
         color: #0bbd87;
       }
     }
   }
-  .slices-char{
+
+  .slices-char {
     color: white;
     font-size: 20px;
     margin: 0 10px;
   }
-  span{
+
+  span {
     color: white;
     font-size: 20px;
   }

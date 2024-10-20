@@ -12,8 +12,8 @@
     <div class="universalCardRight">
 
     </div>
+    <SwitchBoll :scale="isScaled"/>
   </div>
-  <SwitchBoll :scale="isScaled"/>
 </template>
 
 <script lang="ts" setup>
@@ -26,7 +26,7 @@ import router from "../../../router";
 const universalPage = ref<HTMLDivElement | null>(null);
 const isScaled = ref(true);
 
-const specialBack = () => {
+const specialBack =async () => {
   if (universalPage.value) {
     isScaled.value = false;
     universalPage.value.classList.remove('enter');
@@ -56,11 +56,11 @@ onMounted(() => {
   top: 0;
   display: flex;
   justify-content: center;
-  height: 100vw;
+  height: auto;
   width: 100vw;
-  position: fixed;
   background: white;
   color: black;
+  min-height: 100vh;
 
   .SpecialBack {
     transition: transform 0.6s ease;
@@ -70,7 +70,7 @@ onMounted(() => {
 }
 
 .universalCardLeft {
-  position: fixed;
+  position: absolute;
   padding: 20px;
   top: 50px;
   left: 70px;
@@ -83,7 +83,7 @@ onMounted(() => {
 }
 
 .universalCardRight {
-  position: fixed;
+  position: absolute;
   right: 40px;
   width: 30%;
   height: 100%;

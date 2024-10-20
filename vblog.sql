@@ -11,7 +11,7 @@
  Target Server Version : 80037 (8.0.37)
  File Encoding         : 65001
 
- Date: 17/10/2024 21:55:58
+ Date: 20/10/2024 12:54:17
 */
 
 SET NAMES utf8mb4;
@@ -20,13 +20,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for blogs
 -- ----------------------------
-CREATE DATABASE IF NOT EXISTS `vblog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */; 
-USE `vblog`;
-
 DROP TABLE IF EXISTS `blogs`;
 CREATE TABLE `blogs`  (
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blogs
@@ -44,7 +41,7 @@ CREATE TABLE `lifechips`  (
   `date` datetime NULL DEFAULT NULL,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of lifechips
@@ -54,7 +51,8 @@ INSERT INTO `lifechips` VALUES ('BlueSky.jpg', 'Relax~', '好看，很久没有�
 INSERT INTO `lifechips` VALUES ('zbg.mp4', '秋游', '帅！子博哥太帅了！', '2024-10-02 00:00:00', 'video', NULL);
 INSERT INTO `lifechips` VALUES ('baker.jpg', 'Baker ZJS', '嗯哼', '2024-10-03 00:00:00', 'photo', '');
 INSERT INTO `lifechips` VALUES ('Enjoy.md', '', NULL, '2024-10-05 00:00:00', 'TXT', NULL);
-INSERT INTO `lifechips` VALUES ('sbzjs.mp4', 'en...', '嗯，帕金森', '2024-10-02 00:00:00', 'video', '啧啧啧');
+INSERT INTO `lifechips` VALUES ('yyhjs.jpg', '幽影黄金树', '肿么？你也来了？', '2024-10-19 00:00:00', 'photo', NULL);
+INSERT INTO `lifechips` VALUES ('mf.jpg', '要用模法打败魔法', 'what can i say,还好不会挂科，因为专业课不包括该内容', '2024-10-20 00:00:00', 'photo', '听说了吗？哈利波特要重映了，还不赶快去学模法');
 
 -- ----------------------------
 -- Table structure for poetry
@@ -67,7 +65,7 @@ CREATE TABLE `poetry`  (
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `date` datetime NULL DEFAULT NULL,
   `manuscriptUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of poetry
@@ -83,7 +81,7 @@ CREATE TABLE `recentcomments`  (
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `time` datetime NULL DEFAULT NULL,
   `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of recentcomments
@@ -119,12 +117,11 @@ DROP TABLE IF EXISTS `visitorapplication`;
 CREATE TABLE `visitorapplication`  (
   `account` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of visitorapplication
 -- ----------------------------
-INSERT INTO `visitorapplication` VALUES ('visitor', '$2a$10$IBfrUtVunx1Pp4HbSk1.e.UaebkPWFOi4NQyFsiM0UMsdpIi5ahvO');
 
 -- ----------------------------
 -- Table structure for visitors
@@ -132,12 +129,14 @@ INSERT INTO `visitorapplication` VALUES ('visitor', '$2a$10$IBfrUtVunx1Pp4HbSk1.
 DROP TABLE IF EXISTS `visitors`;
 CREATE TABLE `visitors`  (
   `account` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nick` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of visitors
 -- ----------------------------
-INSERT INTO `visitors` VALUES ('visitor', '$2a$10$IBfrUtVunx1Pp4HbSk1.e.UaebkPWFOi4NQyFsiM0UMsdpIi5ahvO');
+INSERT INTO `visitors` VALUES ('visitor', '$2a$10$MF2xiuRQo5.AMYzEF4L9ze4eU.Cj0NbZFCu7tgo6koKccW1/qpgxe', 'HaHaHaHaHa');
+INSERT INTO `visitors` VALUES ('visitors', '$2a$10$tbRVuzpucW2Y9YHW8pbuVO.LjJBg1cgtRkkTEveFK.Tkt6dHUrbhm', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

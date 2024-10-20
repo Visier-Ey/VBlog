@@ -4,10 +4,8 @@
 
 <template>
   <div class="footer">
-    <span class="left">
-      2024 visier | made by Visier
-    </span>
-    <span class="right">
+    <span>
+      2024 visier | 浮生百态 |
       ICP : <a class="ICP" href="https://beian.miit.gov.cn/">豫ICP备2024093066号</a>
     </span>
   </div>
@@ -15,15 +13,15 @@
 
 <style scoped>
 .footer {
-  z-index: 1000;
-  height: 30px;
+  position: relative;
   width: 100vw;
-  position: fixed;
+  background: rgba(0, 0, 0, 0.1);
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
+  height: 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   span{
     color: white;
     margin: 0 20px;

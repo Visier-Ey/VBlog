@@ -43,12 +43,12 @@ const clickPhoto = () => {
   flex-direction: column;
   position: relative;
   margin-bottom: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .ChipPhoto {
   width: 100%;
-  height: 70%;
+  height: auto;
   z-index: 20;
   transition: all 0.5s ease ;;
   &:hover {

@@ -15,9 +15,9 @@ read -p  "DB_USER: " DB_USER
 sed -i "s/${SEARCH_TEXT}/${DB_USER}/g" "${FILE_PATH}"
 SEARCH_TEXT="visier"
 read -p  "DB_PASSWORD: " DB_PASSWORD
-sed -i "s/${SEARCH_TEXT}/${DB_PASSWORD}/g" "${FILE_PATH}"
-BASE_URL="http://visier.icu:3000"
-sed -i "s/http:\/\/localhost:3000/${BASE_URL}/g" "${FILE_PATH}"
+sed -i "s#${SEARCH_TEXT}#${DB_PASSWORD//\//\\/}#g" "${FILE_PATH}"
+BASE_URL="https://visier.icu/backend"
+sed -i "s#http://127.0.0.1:3000#${BASE_URL}#g" "${FILE_PATH}"
 # deal with the db config
 # -------------------------------------------------
 
@@ -25,14 +25,14 @@ sed -i "s/http:\/\/localhost:3000/${BASE_URL}/g" "${FILE_PATH}"
 # deal with the backend sever config
 # -------------------------------------------------
 FILE_PATH="frontend/custom.config.js"
-SEARCH_TEXT="127.0.0.1"
+SEARCH_TEXT="http://127.0.0.1:3000"
 #read -p  "BACKEND_HOST: " BACKEND_HOST
-BACKEND_HOST="visier.icu"
-sed -i "s/${SEARCH_TEXT}/${BACKEND_HOST}/g" "${FILE_PATH}"
+BACKEND_HOST="https://visier.icu/backend"
+sed -i "s#${SEARCH_TEXT}#${BACKEND_HOST}#g" "${FILE_PATH}"
 #SEARCH_TEXT="host: localhost"
 #read -p  "WEB_HOST: " WEB_HOST
 #sed -i "s/${SEARCH_TEXT}/host: '${WEB_HOST}',/g" "${FILE_PATH}"
-sef -i "s/open: true/open: false/g" "${FILE_PATH}"
+sed -i "s#open: true#open: false#g" "${FILE_PATH}"
 
 # deal with the frontend web host
 # -------------------------------------------------
@@ -51,33 +51,35 @@ cd ../
 
 # -------------------------------------------------
 #wirted the start script
-#START_SCRIPT="
-#pm2 start backend/app.js
-#cd frontend || exit
-#serve -s dist -p 8080
-#"
-#echo "${START_SCRIPT}" | sudo sh -c 'cat > /usr/bin/vblogStart.sh'
-#sudo chmod +x "/usr/bin/vblogStart.sh"
-## -------------------------------------------------
-## register the vblog service
-#SERVICE_CONTENT="
-#[Unit]
-#Description=VBlog Service,customized service
-#After=network.target
-#
-#[Service]
-#Type=simple
-#ExecStart=/usr/bin/vblogStart.sh
-#WorkingDirectory=${PWD}
-#Restart=on-failure
-#
-#[Install]
-#WantedBy=multi-user.target
-#"
-#
-#echo "${SERVICE_CONTENT}" | sudo sh -c 'cat > /etc/systemd/system/vblog.service'
-#
-#sudo systemctl daemon-reload
+START_SCRIPT="
+pm2 start backend/app.js
+cd frontend || exit
+serve -s dist -p 8080
+"
+
+echo "${START_SCRIPT}" | sudo sh -c 'cat > /usr/bin/vblogStart.sh'
+sudo chmod +x "/usr/bin/vblogStart.sh"
+# -------------------------------------------------
+# register the vblog service
+SERVICE_CONTENT="
+[Unit]
+Description=VBlog Service,customized service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/vblogStart.sh
+ExecStop=/usr/bin/vblogStop.sh
+WorkingDirectory=${PWD}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+"
+
+echo "${SERVICE_CONTENT}" | sudo sh -c 'cat > /etc/systemd/system/vblog.service'
+
+sudo systemctl daemon-reload
 
 # optional
 # sudo systemctl start vblog

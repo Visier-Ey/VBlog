@@ -3,7 +3,7 @@ const sourceBaseUrl = require('../config/index.js').serverBaseUrl;
 const baseUrl = sourceBaseUrl+ '/lifeChips/';
 
 exports.getLifeChips = async (req, res) => {
-    const sql = 'SELECT * FROM lifeChips';
+    const sql = 'SELECT * FROM lifechips';
     db.query(sql, (err, result) => {
         if (err) {
             console.log(err);
