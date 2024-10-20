@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "System init start"
 
 read -p  "DB_USER: " DB_USER
@@ -52,9 +54,9 @@ cd ../
 # -------------------------------------------------
 #wirted the start script
 START_SCRIPT="
+pm2 stop all
 pm2 start backend/app.js
-cd frontend || exit
-serve -s dist -p 8080
+serve -s frontend/dist -p 8080
 "
 
 echo "${START_SCRIPT}" | sudo sh -c 'cat > /usr/bin/vblogStart.sh'

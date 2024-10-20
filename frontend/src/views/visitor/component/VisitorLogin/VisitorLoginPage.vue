@@ -122,7 +122,7 @@ const loginHandle = async () => {
     props.logDialogProps.isLog = true;
     localStorage.setItem('jwtToken', res.data.token);
     sessionStorage.setItem('isLog', 'true');
-    localStorage.setItem('nick', res.data.data.nick);
+    localStorage.setItem('nick', res.data.data.nick || 'Visitor');
     location.reload();
   }else {
     await messagePop(res.data.message);

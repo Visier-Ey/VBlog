@@ -29,7 +29,37 @@ exports.visitorRegister = (req, res) => {
                         res.json({status: 'success', message: 'register success!'});
                     });
                 }
+            });
+        }
+    });
+}
 
+exports.visitorApplicationApprove = (req, res) => {
+    const account = req.query.account;
+    const sql = 'SELECT * FROM visitorapplication WHERE account = ?';
+    db.query(sql, [account], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({status: 'fail', message: 'something error!', error: err});
+        }
+        if (result.length === 0) {
+            res.json({status: 'fail', message: 'no right application!'});
+        } else {
+            const sql = 'INSERT INTO visitors(account, password) VALUES(?, ?)';
+            db.query(sql, [result[0].account, result[0].password], (err, result2) => {
+                if (err) {
+                    console.log(err);
+                    res.json({status: 'fail', message: 'something error!', error: err});
+                } else {
+                    const sql = 'DELETE FROM visitorapplication WHERE account = ?';
+                    db.query(sql, [result[0].account], (err, result) => {
+                        if (err) {
+                            console.log(err);
+                            res.json({status: 'fail', message: 'something error!', error: err});
+                        }
+                        res.json({status: 'success', message: 'register success!'});
+                    });
+                }
             });
         }
     });

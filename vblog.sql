@@ -20,6 +20,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for blogs
 -- ----------------------------
+CREATE DATABASE IF NOT EXISTS `vblog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `vblog`;
+
 DROP TABLE IF EXISTS `blogs`;
 CREATE TABLE `blogs`  (
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL

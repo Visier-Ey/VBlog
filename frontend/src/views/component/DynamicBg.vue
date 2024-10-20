@@ -60,7 +60,7 @@ onMounted(async () => {
   justify-content: center;
   align-items: flex-start;
   margin: 0;
-
+  object-fit: cover;
   video {
     object-fit: cover;
     margin: 0;

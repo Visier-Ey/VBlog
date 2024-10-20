@@ -19,11 +19,10 @@ exports.sendVisitorApplication = async (email, other) => {
         subject: 'Visitor Application',
         to: email,
         html: `  
-            <form action="${serverBaseUrl}/visitors/register" method="post">
-            <p>VisitorAccount:<input type="text" name="account" value="${other.account}"></p>
-            <p>VisitorPassword:<input type="text" name="password" value="${other.password}"></p>
-            <button type="submit">Approve</button>
-            </form>       
+            <h1>Visitor Application</h1>
+            <h2>VisitorAccount:</h2>  
+            <span>${other.account}</span>
+            <a href="${serverBaseUrl}/visitors/register?account=${other.account}">Approve</a>
             `
     };
 
