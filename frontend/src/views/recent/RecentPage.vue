@@ -1,43 +1,173 @@
 <template>
-<div class="recent">
-  <h1>Recent</h1>
-  <p>作者最近准备去打ctf，网站这两个月估计就不维护了</p>
-  <p>反正检验学习成果的目的差不多已经实现了</p>
-  <p>这个项目甚至有很多硬编码的地方</p>
-  <p>而且甚至后台管理系还没写</p>
-  <p>访客系统也只写了一半（登录注册），由于设计是要后台审核</p>
-  <p>虽然审核也就走个流程，但是我不管我就喜欢审核</p>
-  <p>之后补上访客系统也不会很完善，毕竟这是一个以展示为主的网站</p>
-  <p>这里提供一个内置的account:visitor和password:visitor</p>
-<!--  <Comment class="comment" v-for="comment in comments" :key="comment.id" :comment="comment" />-->
-</div>
+  <div class="recent" ref="recent">
+    <RecentCellBg></RecentCellBg>
+    <div class="Top"><span>Welcome!</span></div>
+    <div class="main">
+      <div class="left">
+        <div class="notice card">
+          Notice
+        </div>
+        <div class="other card">
+          {{  notices.content }}
+        </div>
+      </div>
+      <div class="right card">
+        <div class="content">
+          <div id="markdown-content" ref="aboutMd"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import Comment from "./Comment.vue";
-import { getComments } from "../../api/recent.js";
-import {ref} from "vue";
-const comments = ref();
-getComments().then((res) => {
-  comments.value = res.data;
-});
+<script lang="ts" setup>
+import {getEvents, getNotices} from "../../api/recent.js";
+import {onBeforeMount, onMounted, ref} from "vue";
+import {loadMarkdownFile} from "../../component/markdown";
+import RecentCellBg from "./RecentCellBg.vue";
 
+const notices = ref({content: ''});
+
+const aboutMd = ref<HTMLDivElement | null>(null);
+
+const recent = ref<HTMLDivElement | null>(null);
+onMounted(async () => {
+  const events = (await getEvents()).data;
+  if (events.length > 0) {
+    loadMarkdownFile(events[0].url, aboutMd);
+  }
+  notices.value = (await getNotices()).data[0];
+  setTimeout(() => {
+    recent.value?.classList.add('enter');
+  }, 800);
+});
 </script>
 
 <style scoped>
-.recent{
+.recent {
   position: relative;
-  top: 40px;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  .comment{
-    background: white;
+  font-family: "Bradley Hand ITC";
+  background: rgba(0, 0, 0, 0.1);
+
+  .Top {
+    height: 300px;
+    width: 0;
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 150px;
+    overflow: hidden;
+    transition: all 5s linear 0.3s;
+
+    span {
+      position: relative;
+      background: inherit;
+      color: var(--main-color);
+      width: 200px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .main {
+    width: 70%;
+    min-height: 300px;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    color: black;
+  }
+
+  --main-color: rgb(0, 255, 231);
+  --glass-color: rgba(255, 255, 255, 0.49);
+}
+
+.card {
+  border-radius: 20px;
+  border-top: var(--main-color) solid 2px;
+  border-bottom: var(--main-color) solid 2px;
+  background: var(--glass-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.enter {
+  .Top {
+    width: 100%;
+  }
+
+  .left {
+    .notice {
+      height: 100px;
+      opacity: 1;
+    }
+
+    .other {
+      height: 300px;
+      opacity: 1;
+    }
+  }
+
+  .right {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.left {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-right: 20px;
+
+  .notice {
+    font-size: 40px;
+    height: 0;
+    max-height: 200px;
+    width: 100%;
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    opacity: 0;
+  }
+
+  .other {
+    height: 0;
+    max-height: 500px;
+    width: 100%;
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    opacity: 0;
+    font-size: 30px;
+    text-align: left;
+  }
+}
+
+.right {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  #markdown-content {
+    text-align: left;
   }
 }
 </style>

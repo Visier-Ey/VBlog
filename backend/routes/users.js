@@ -1,4 +1,4 @@
-const { profilesHandle, usersHandle } = require('../route_handles/usersHandle');
+const {getUsersInfo, revisionUserInfo} = require('../route_handles/usersHandle');
 
 var express = require('express');
 var router = express.Router();
@@ -9,14 +9,11 @@ router.get('/', function (req, res, next) {
 });
 
 // deal with the request of /profiles
-router.get('/profiles', profilesHandle);
 
 // deal with the request of /users
-router.get('/user', usersHandle);
+router.get('/get', getUsersInfo);
 
-
-
-
+router.post('/revise', revisionUserInfo);
 
 
 module.exports = router;

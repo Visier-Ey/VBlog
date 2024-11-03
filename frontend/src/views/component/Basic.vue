@@ -24,6 +24,7 @@ window.addEventListener('scroll', function() {
   width: 100vw;
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 .basicFooter {
   z-index: 1000;

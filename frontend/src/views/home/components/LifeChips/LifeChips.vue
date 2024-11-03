@@ -1,14 +1,17 @@
 <template>
-  <LifeChipPhoto v-if="props.chip.type==='photo'"
-                 :chipPhoto="props.chip"
-  />
-  <!--<LifeChipTXT></LifeChipTXT>-->
-  <LifeChipVideo v-if="props.chip.type==='video'"
-                 :chipVideo="props.chip"
-  />
-  <LifeChipTXT v-if="props.chip.type==='TXT'"
-               :chipTXT="props.chip"
-  />
+  <div>
+    <LifeChipPhoto v-if="props.chip.type==='photo'"
+                   :chipPhoto="props.chip"
+    />
+    <!--<LifeChipTXT></LifeChipTXT>-->
+    <LifeChipVideo v-if="props.chip.type==='video'"
+                   :chipVideo="props.chip"
+    />
+    <LifeChipTXT v-if="props.chip.type==='TXT'"
+                 :chipTXT="props.chip"
+    />
+  </div>
+
 </template>
 
 <script lang="ts" setup>
@@ -27,5 +30,7 @@ const props = defineProps<Props>();
 </script>
 
 <style scoped>
-
+div{
+  margin: 20px;
+}
 </style>

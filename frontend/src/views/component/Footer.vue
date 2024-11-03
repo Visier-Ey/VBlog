@@ -4,10 +4,9 @@
 
 <template>
   <div class="footer">
-    <span>
-      2024 visier | 浮生百态 |
-      ICP : <a class="ICP" href="https://beian.miit.gov.cn/">豫ICP备2024093066号</a>
-    </span>
+    <pre>
+      2024 visier | <a href="#">{{ ' 浮生百态 ' }}</a> | ICP : <a class="ICP" href="https://beian.miit.gov.cn/">豫ICP备2024093066号</a>
+    </pre>
   </div>
 </template>
 
@@ -22,14 +21,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  span{
+  pre{
     color: white;
     margin: 0 20px;
     display: flex;
     align-items: center;
+    font-size: 20px;
   }
 }
-.ICP{
+a{
   color: white;
   text-decoration: none;
   transition: all 0.3s ease;

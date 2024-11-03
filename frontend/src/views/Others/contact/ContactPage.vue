@@ -1,9 +1,9 @@
 <template>
-  <DynamicBg
-      :bg="bg"
-  />
+<!--  <DynamicBg-->
+<!--      :bg="bg"-->
+<!--  />-->
   <div class="container">
-    Any Idea? Contact me
+    Welcome question
     visier_@Outlook.com
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="blur-bg blur" ref="blurBg">
-    <div class="header">
+    <div class="header show" ref="header">
       <div class="back-option" @click="backHome">
         <el-icon :size="30">
           <ArrowLeft/>
@@ -23,6 +23,7 @@ import {useRoute} from "vue-router";
 import {onMounted, ref} from "vue";
 import SwitchBoll from "./SwitchBoll.vue";
 
+const header = ref<HTMLDivElement | null>(null);
 const route = useRoute();
 const isScaled = ref(true);
 const blurBg = ref<HTMLDivElement | null>(null);
@@ -31,7 +32,7 @@ const backHome = async () => {
   // set the LeaveScale effect
   isScaled.value = false;
   // set the blur effect
-  blurBg.value.classList.add('blur');
+  blurBg.value.classList?.add('blur');
   setTimeout(() => {
     router.push({name: 'home'});
   }, 500);
@@ -39,8 +40,18 @@ const backHome = async () => {
 onMounted(async () => {
   // set the EnterScale effect
   setTimeout(() => {
-    blurBg.value.classList.remove('blur');
+    blurBg.value?.classList.remove('blur');
   }, 500);
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', function () {
+    let scrollTop = document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      header.value?.classList.remove('show');
+    } else if (scrollTop < lastScrollTop) {
+      header.value?.classList.add('show');
+    }
+    lastScrollTop = scrollTop;
+  });
 });
 </script>
 
@@ -55,6 +66,11 @@ onMounted(async () => {
   filter: blur(100px);
 }
 
+.header.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .header {
   top: 0;
   width: 100vw;
@@ -63,9 +79,12 @@ onMounted(async () => {
   z-index: 1000;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0.8);
+  background-color: rgb(0, 0, 0, 0.5);
   height: 60px;
+  transform: translateY(-60px);
   padding-left: 50px;
+  opacity: 0;
+  transition: all 0.5s ease;
 
   .back-option {
     display: flex;

@@ -1,9 +1,9 @@
 <template>
   <div class="chipV">
-    <div class="ChipLabel">Video</div>
+    <LifeChiplabel :chipLabel="'Video'"></LifeChiplabel>
     <div class="ChipVideoWrapper">
       <video class="ChipVideo" ref="video">
-        <source :src="props.chipVideo.url" type="video/mp4"/>
+        <source :src="props.chipVideo.url?props.chipVideo.url:''" type="video/mp4"/>
       </video>
       <div class="playBg" ref="videoBg">
         <el-icon v-if="!isPlay">
@@ -14,22 +14,19 @@
         </el-icon>
       </div>
     </div>
-    <!--  ChipPContent -->
     <LifeChipContent
         :chipContent="chipVideo"
-    />
-    <LifeChipBar
-        :chipBar="chipBar"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import LifeChipBar from "./LifeChipBar.vue";
+import LifeChipBar from "./smallComponents/LifeChipBar.vue";
 import {onMounted, ref} from "vue";
 import {VideoPause, VideoPlay} from '@element-plus/icons-vue'
 import {Chip} from "../interfaces";
-import LifeChipContent from "./LifeChipContent.vue";
+import LifeChipContent from "./smallComponents/LifeChipContent.vue";
+import LifeChiplabel from "./smallComponents/LifeChiplabel.vue";
 const isPlay = ref<boolean>(false);
 const videoBg = ref<HTMLDivElement | null>(null);
 const video = ref<HTMLVideoElement | null>(null);
@@ -76,10 +73,9 @@ onMounted(() => {
   height: auto;
   display: flex;
   background-color: rgb(255, 255, 255);
-  flex-direction: column;
   position: relative;
-  margin-bottom: 20px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin: 0;
 }
 
 .ChipVideoWrapper {
@@ -132,16 +128,5 @@ onMounted(() => {
 }
 
 
-.ChipLabel {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 100;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  padding: 5px 20px;
-  font-size: 20px;
-  font-weight: bold;
-}
 
 </style>

@@ -28,8 +28,8 @@ const props = defineProps<profile>()
 
 <style scoped>
 .playerAvatarAutoSizeInner {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -54,6 +54,8 @@ const props = defineProps<profile>()
   z-index: 20;
 }
 :deep(.avatar-image) {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;

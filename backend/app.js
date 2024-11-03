@@ -12,12 +12,12 @@ var recentRouter = require('./routes/recent');
 var visitorRouter = require('./routes/visitors');
 var serverConfig = require('./config/index.js').serverConfig;
 const { jwtMiddleware } = require('./jwt/index.js');
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(jwtMiddleware);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/arts', artsRouter);
 app.use('/lifeChips', lifeChipsRouter);
 app.use('/recent', recentRouter);

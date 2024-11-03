@@ -1,10 +1,14 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import {loadMarkdownFile} from "../../../component/markdown/index.js";
+import {loadMarkdownFile} from "../../../component/markdown";
+import { getAbout } from "../../../api/recent";
 
 const aboutMd = ref < HTMLDivElement | null > (null);
-onMounted(() => {
-  loadMarkdownFile('about.md', aboutMd);
+onMounted(async () => {
+  const about = (await getAbout()).data;
+  if (about.length > 0) {
+    loadMarkdownFile(about[0].url, aboutMd);
+  }
 });
 </script>
 

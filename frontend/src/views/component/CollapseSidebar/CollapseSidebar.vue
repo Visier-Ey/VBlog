@@ -29,8 +29,8 @@
 
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import VisitorLoginPage from "../VisitorLogin/VisitorLoginPage.vue";
-import router from "../../../../router";
+import VisitorLoginPage from "../../visitor/component/VisitorLogin/VisitorLoginPage.vue";
+import router from "../../../router";
 const sidebarAreaDOM = ref<HTMLDivElement | null>(null);
 const visitorProfile = ref({
   nick: localStorage.getItem('nick') || 'Visitor',
