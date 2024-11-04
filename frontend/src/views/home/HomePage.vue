@@ -58,7 +58,7 @@ const profile = ref({
 });
 // set background video
 const bg = reactive({
-  poster: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/874400/14e1a261b94ebe19eac8234a9c7e4abaae1084bb.jpg',
+  poster: '/BGposter.jpg',
   webm: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/874400/c6ec1e32708cb1e403a4c79db03b0128e080e1e8.webm',
   mp4: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/874400/2fda5d3781c6d198d70775f53809db245151928d.mp4'
 })
