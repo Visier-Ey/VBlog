@@ -72,7 +72,7 @@ onBeforeMount(async () => {
   res.data.forEach((item, index) => {
     item.date = new Date(item.date).toLocaleDateString();
   });
-  lifeChips.value = res.data;
+  // lifeChips.value = res.data;
 })
 onMounted(async () => {
   // set the EnterScale effect
