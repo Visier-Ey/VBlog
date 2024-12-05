@@ -12,8 +12,9 @@
     <div class="universalCardRight" v-if="false">
 
     </div>
-    <!--  ----------------------------No Works!-----------------------------  -->
+
     <span class="NoWorks" v-for="(items) in wordList" :style="randomStyle()">{{ items }}</span>
+    <!--  ----------------------------No Works!-----------------------------  -->
     <SwitchBoll :scale="isScaled"/>
   </div>
 </template>
@@ -60,7 +61,7 @@ const specialBack = async () => {
     universalPage.value.classList.remove('enter');
     setTimeout(() => {
       router.push({name: 'home'});
-    }, 500);
+    }, 600);
   }
 };
 

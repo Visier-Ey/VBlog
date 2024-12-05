@@ -12,7 +12,7 @@
       <div class="AdditionalInfo">
         <div class="niceToMeetYou">Hello! Nice to see you 😀</div>
         <div class="selfName">我是<span>{{ props.profile.name.toUpperCase() }}</span></div>
-        <div class="brief">今年{{props.profile.age}}}纯情男大一个😚</div>
+        <div class="brief">今年{{props.profile.age}}纯情男大一个😚</div>
         <div class="supply">平常喜欢...(hover it)
           <div class="hidden">喜欢你😘</div>
         </div>
@@ -217,11 +217,12 @@ const props = defineProps<Props>();
         width: auto;
         position: absolute;
         color: white;
-        transition: all 0.3s ease;
+        transition: all 1s ease;
         &:hover {
           color: #00ffff;
           cursor: pointer;
           font-size: 60px;
+          transition: all 0.3s ease;
         }
       }
     }

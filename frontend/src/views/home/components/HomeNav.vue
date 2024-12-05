@@ -56,8 +56,8 @@
       <!--          setting,searching...-->
       <div class="tool"></div>
       <!--    nav end        -->
-      <SwitchBoll :scale="isScaled"></SwitchBoll>
     </div>
+    <SwitchBoll :scale="isScaled"></SwitchBoll>
   </div>
 </template>
 
@@ -95,8 +95,6 @@ const props = defineProps<Props>();
   width: 100%;
   color: white;
   height: 60px;
-  display: flex;
-  justify-content: flex-end;
   position: relative;
 
   .user {
@@ -108,15 +106,17 @@ const props = defineProps<Props>();
     font-size: 70px;
     top: 0;
     transform: skewX(-20deg);
+    z-index: 2001;
   }
 }
 
 .nav {
-  right: 0;
   width: 40%;
   margin: 0;
   height: 100%;
-  z-index: 1000;
+  z-index: 2001;
+  position: absolute;
+  right: 0;
 }
 
 .menu {
@@ -160,7 +160,7 @@ const props = defineProps<Props>();
       margin: 0;
       overflow-y: hidden;
       height: 0;
-      opacity: 0;
+      opacity: 1;
 
       .link:hover {
         cursor: pointer;

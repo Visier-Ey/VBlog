@@ -1,11 +1,14 @@
 <script setup>
+import {httpBaseUrl} from "../../../custom.config.js";
 
+
+const domain = httpBaseUrl.split("//")[0]+"//"+ httpBaseUrl.split('//')[1].split(':')[0];
 </script>
 
 <template>
   <div class="footer">
     <pre>
-      2024 visier | <a href="#">{{ ' 浮生百态 ' }}</a> | ICP : <a class="ICP" href="https://beian.miit.gov.cn/">豫ICP备2024093066号</a>
+      2024 visier | <a :href="domain">{{ ' 浮生百态 ' }}</a> | ICP : <a class="ICP" href="https://beian.miit.gov.cn/">豫ICP备2024093066号</a>
     </pre>
   </div>
 </template>

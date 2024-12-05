@@ -37,7 +37,7 @@ import Profile from "./components/Profiles/Profile.vue";
 import DynamicBg from "../component/DynamicBg.vue";
 import {getLifeChips} from '../../api/lifeChips';
 import {getUser} from '../../api/users';
-import Nav from "./components/Nav.vue";
+import Nav from "./components/HomeNav.vue";
 import AsideBar from "../component/AsideBar.vue";
 import CycleImage from "./components/CycleImage.vue";
 //  import the briefs of the blog
@@ -82,7 +82,7 @@ onMounted(async () => {
   });
   setTimeout(() => {
     page.value?.classList.remove('blurPage');
-  }, 500);
+  }, 600);
 
 });
 // set the blogChips
@@ -111,6 +111,8 @@ onMounted(async () => {
   color: #2c3e50;
   width: 100vw;
   height: auto;
+  min-width: 1500px;
+  min-height: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,12 +147,8 @@ onMounted(async () => {
 
   height: auto;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 0;
   margin-top: 10px;
-  z-index: 10000;
 }
 
 .profileCard {
@@ -161,15 +159,7 @@ onMounted(async () => {
   justify-content: center;
   overflow: hidden;
   margin: 0 20px;
-
-  .skeleton {
-    display: block;
-    width: 90%;
-
-    :deep(.el-skeleton__item) {
-      display: block;
-    }
-  }
+  z-index: 2000;
 }
 
 .Cycle-Image {
@@ -181,7 +171,7 @@ onMounted(async () => {
   padding: 40px;
   .LifeLabel{
     position: absolute;
-    top: 50px;
+    top: -500px;
     left: -20px;
     z-index: 100;
     color: rgb(255, 255, 255);

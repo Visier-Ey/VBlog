@@ -32,6 +32,11 @@ const routes = [
                         path: '/DBMS',
                         component: () => import('../views/works/DBMS/DBMSPage.vue'),
                         meta: {title: 'DBMS'}
+                    },{
+                        name: 'Tech',
+                        path: '/Tech',
+                        component: () => import('../views/works/Tech/techPage.vue'),
+                        meta: {title: 'Tech'}
                     }
                     //     works routes
                 ]

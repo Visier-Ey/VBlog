@@ -25,6 +25,8 @@ window.addEventListener('scroll', function() {
   display: flex;
   position: relative;
   overflow: hidden;
+  min-width: 1500px;
+  min-height: 1000px;
 }
 .basicFooter {
   z-index: 1000;

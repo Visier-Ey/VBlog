@@ -1,18 +1,20 @@
 <template>
-  <div class="blur-bg blur" ref="blurBg">
-    <div class="header show" ref="header">
-      <div class="back-option" @click="backHome">
-        <el-icon :size="30">
-          <ArrowLeft/>
-        </el-icon>
-        Back
+  <div class="wrapper">
+    <div class="blur-bg blur" ref="blurBg">
+      <div class="header show" ref="header">
+        <div class="back-option" @click="backHome">
+          <el-icon :size="30">
+            <ArrowLeft/>
+          </el-icon>
+          Back
+        </div>
+        <span class="slices-char">|</span>
+        <span> {{ route.meta.title }} </span>
       </div>
-      <span class="slices-char">|</span>
-      <span> {{ route.meta.title }} </span>
+      <router-view/>
     </div>
-    <router-view/>
+    <SwitchBoll :scale="isScaled"></SwitchBoll>
   </div>
-  <SwitchBoll :scale="isScaled"></SwitchBoll>
 </template>
 
 <script lang="ts" setup>
@@ -35,13 +37,13 @@ const backHome = async () => {
   blurBg.value.classList?.add('blur');
   setTimeout(() => {
     router.push({name: 'home'});
-  }, 500);
+  }, 600);
 }
 onMounted(async () => {
   // set the EnterScale effect
   setTimeout(() => {
     blurBg.value?.classList.remove('blur');
-  }, 500);
+  }, 600);
   let lastScrollTop = 0;
   window.addEventListener('scroll', function () {
     let scrollTop = document.documentElement.scrollTop;
@@ -60,6 +62,9 @@ onMounted(async () => {
   transition: all 0.5s ease;
   height: auto;
   width: 100vw;
+  z-index: 5001;
+  left: 0;
+  top: 0;
 }
 
 .blur-bg.blur {

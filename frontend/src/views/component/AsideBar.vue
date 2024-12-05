@@ -32,7 +32,7 @@ onMounted(async () => {
 <style scoped>
 .AsideBar {
   margin: 0;
-  z-index: 10001;
+  z-index: 2001;
   position: fixed;
   top: 0;
   left: 0;

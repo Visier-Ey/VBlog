@@ -1,22 +1,23 @@
 <template>
   <div class="playerAvatarAutoSizeInner">
     <div class="profile_avatar_frame">
-      <el-image class="frame-image" img-id="frame" :src="props.url.frameUrl" />
-      <el-image class="avatar-image" img-id="avatar" :src="props.url.avatarUrl" />
+      <img class="frame-image" alt="Failed"  :src="props.url.frameUrl"/>
+      <img class="avatar-image" alt="Failed" :src="props.url.avatarUrl" onerror="this.src='/avatar.jpg'"/>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {getProfiles} from '../../../../api/users.js';
-import {onMounted, ref} from "vue";
+import {onMounted} from "vue";
+
 // set the profile data
 interface profile {
-  url:{
+  url: {
     frameUrl: string;
     avatarUrl: string;
   }
 }
+
 
 onMounted(() => {
   // get the profile data
@@ -38,28 +39,24 @@ const props = defineProps<profile>()
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-:deep(.frame-image img,
-.avatar-image img) {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-:deep(.frame-image) {
-  width: 114%;
-  height: 114%;
-  left: -9%;
-  top: -9%;
-  z-index: 20;
-}
-:deep(.avatar-image) {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
+  .frame-image {
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    z-index: 1;
+  }
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
 }
 
 </style>
