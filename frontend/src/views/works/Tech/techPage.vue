@@ -5,6 +5,7 @@ const tech1 = httpBaseUrl + '/tech/tech1.rar';
 const tech2 = httpBaseUrl + '/tech/tech2.rar';
 const tech2html = httpBaseUrl + '/tech/EDC.html';
 const sas = httpBaseUrl + '/tech/sas.html';
+const tech3 = httpBaseUrl + '/tech/tech3.rar';
 </script>
 
 <template>
@@ -12,7 +13,7 @@ const sas = httpBaseUrl + '/tech/sas.html';
     <div class="techPageContainer">
       <div class="techPageHeader">
         <div class="techPageTitle">Tech</div>
-        <div class="techPageSubTitle">May Miss at any time</div>
+        <div class="techPageSubTitle">乱做的网页，指不定哪天就关了，文件被隔离了关下windows实时防护</div>
       </div>
       <div class="techPageContent">
         <div class="resourceLine">
@@ -27,6 +28,10 @@ const sas = httpBaseUrl + '/tech/sas.html';
           <a class="techContent" :href="tech2">EDC && TerminalUI</a>
           <label class="date">2024 12 10</label>
           <a class="display" :href="tech2html">OLShow</a>
+        </div>
+        <div class="resourceLine">
+          <a class="techContent" :href="tech3">QT EASY CLOCK</a>
+          <label class="date">2024 12 19</label>
         </div>
       </div>
     </div>
@@ -91,7 +96,6 @@ const sas = httpBaseUrl + '/tech/sas.html';
     background: aqua;
     transform: skewX(-60deg) translateX(30%);
     transition: all 0.3s ease;
-    //box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     &:hover{
       transform:skewX(-60deg) translateX(35%) scale(0.9);
       background: rgba(5, 255, 229, 0.91);
