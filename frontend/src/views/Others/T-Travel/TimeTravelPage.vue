@@ -32,6 +32,8 @@
 </template>
 
 <script lang="ts" setup>
+import {ElTimeline,ElTimelineItem,ElCard} from 'element-plus';
+import 'element-plus/dist/index.css';
 import {MoreFilled} from '@element-plus/icons-vue'
 import {ref} from 'vue'
 import DynamicBg from "../../component/DynamicBg.vue";

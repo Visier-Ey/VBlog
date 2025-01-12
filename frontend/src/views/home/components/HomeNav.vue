@@ -26,15 +26,11 @@
             zeroWidthEncrypt('WORKS', 'damn!')
           }}
           <div class="group">
+            <div class="link" data-custom-id="OpenGL" @click="pageJump">{{
+                zeroWidthEncrypt('OpenGL', 'visier')
+              }}
+            </div>
             <div class="link" data-custom-id="JS" @click="pageJump">{{ zeroWidthEncrypt('JS', 'visier') }}</div>
-            <div class="link" data-custom-id="C-C++" @click="pageJump">{{
-                zeroWidthEncrypt('C/C++', 'visier')
-              }}
-            </div>
-            <div class="link" data-custom-id="DBMS" @click="pageJump">{{
-                zeroWidthEncrypt('DBMS', 'visier')
-              }}
-            </div>
           </div>
         </div>
         <!--      Other List        -->

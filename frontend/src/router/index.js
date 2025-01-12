@@ -22,16 +22,10 @@ const routes = [
                         meta: {title: 'JS'}
                     },
                     {
-                        name: 'C-C++',
-                        path: '/C-C++',
+                        name: 'OpenGL',
+                        path: '/OpenGL',
                         component: () => import('../views/works/C++/C++Page.vue'),
-                        meta: {title: 'C/C++'}
-                    },
-                    {
-                        name: 'DBMS',
-                        path: '/DBMS',
-                        component: () => import('../views/works/DBMS/DBMSPage.vue'),
-                        meta: {title: 'DBMS'}
+                        meta: {title: 'OpenGL(C/C++)'}
                     },{
                         name: 'Tech',
                         path: '/Tech',

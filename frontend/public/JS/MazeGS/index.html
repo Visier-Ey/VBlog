@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MazeGS</title>
+  </head>
+  <body>
+    <div class="container">
+      <header><p for>VISIER</p> <a href="https://github.com/Visier-Ey/MazeGS">
+        <svg xmlns="http://www.w3.org/2000/svg" width="131.08" height="128" viewBox="0 0 256 250"><path fill="#161614" d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0m-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931m6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66m4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08m7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27m9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622m10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868m10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403"/></svg>    
+      </a>
+    </header>
+       <main>
+        <nav id="AsideLeft">
+          <div class="collapseAside collapseAsideLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 391">
+              <path
+                fill="#004CFF"
+                d="m1.273 0l3.049 2.142c9.488 6.603 232.185 161.826 238.397 166.475c8.795 6.174 13.281 13.81 13.281 22.668v4.397c-.1 6.842-2.558 16.469-13.28 24.52l-.039.026c-5.166 3.692-57.747 40.12-113.415 78.701c-4.9 3.397-9.858 6.832-14.827 10.275l-3.314 2.297C61.96 345.572 12.62 379.777 5.947 384.498v6.136l-3.641-6.124c-.177-.315-.34-.58-.151-1.008H2.04v-32.03c0-10.924 1.21-16.178 13.37-24.28c5.179-3.33 49.529-33.955 94.578-65.128l5.3-3.668c41.513-28.73 82.338-57.033 92.364-63.974C186.484 179.718 27.796 69.554 16.923 61.59l-1.286-.932C7.598 54.836 1.273 50.25 1.273 38.128zM21.86 111.361c10.736 6.905 114.562 78.954 115.608 79.697l2.356 1.626l-2.394 1.6s-7.018 4.675-14.805 10.118c-6.666 4.889-12.903 7.333-19.102 7.333c-5.506 0-10.962-1.915-16.708-5.733c-6.12-4.086-23.363-15.98-40.816-28.064l-2.38-1.648A27213 27213 0 0 1 .832 146.592l-.832-.58v-24.47c0-5.62 2.42-10.067 6.666-12.222c4.548-2.318 10.231-1.562 15.195 2.041" />
+            </svg>
+          </div>
+          <menu>
+            <div class="optionList" id="MazeLabel">
+              <label for id="MazeLabel">Maze</label>
+            </div>
+            <div class="optionList" id="GenerateAlgorithmLabel">
+              <label for>Generate Algorithm</label>
+              <ul class="optionGroup" id="GenerateAlgorithm" custom-id="GenerateAlgorithm">
+                <li id="DFS_Generate">DFS Algorithm</li>
+                <li id="Recur_Generate">Recursive Divide</li>
+                <li id="Prim_Generate">Prim's Algorithm</li>
+                <li id="Kruskal_Generate">Kruskal's Algorithm</li>
+              </ul>
+            </div>
+            <div class="optionList" id="SearchAlgorithmLabel">
+              <label for>Search Algorithm</label>
+              <ul class="optionGroup" id="SearchAlgorithm" custom-id="SearchAlgorithm">
+                <li id="BFS_Search">BFS Algorithm</li>
+                <li id="DFS_Search">DFS Algorithm</li>
+                <li id="Dijkstra_Search" style="display: none;">Dijkstra's Algorithm</li>
+                <li id="RightHand_Search">RightHand Search</li>
+                <li id="Astar_SearchDFS">A* Algorithm DFS</li>
+                <li id="Astar_SearchBFS">A* Algorithm BFS</li>
+              </ul>
+            </div>
+            <div class="optionList">
+              <label id="CustomMazeLabel">CustomMaze</label>
+            </div>
+            <div class="optionList">
+              <label id="SettingLabel">Setting</label>
+            </div>
+          </menu>
+          <div class="catBox">
+            <img src="./img/StupidCat.gif" alt="Shit" />
+            <img src="./img/cheers.gif" alt>
+            <img src="./img/circle.gif" alt>
+            <img src="./img/3.gif" alt="">
+          </div>
+        </nav>
+        <div id="display">
+          <div class="screen screenShow" id="screenMaze">
+            <canvas class="MazeCanvas"></canvas>
+          </div>
+          <div class="customMaze " id="screenCustomMaze">
+            <header> <h1>UserInput</h1></header>
+            <main>
+               <textarea name="" id="userInput" placeholder="Enter:AdjMatrix"></textarea>
+            </main>
+                <input type="file" id="fileInput" accept=".txt,.json">
+                <footer>
+                  <label for="">Start</label>
+                <input type="text" id="StartInput" placeholder="x,y">
+                <label for="">End</label>
+                <input type="text" id="EndInput" placeholder="x,y">
+            </footer>
+            <div class="buttonArea">
+              <button id="AMaze">Analysis Maze</button>
+              <button id="CSE">Change Start And End</button>
+            </div>
+        </div>
+        </div>
+        <!--  -->
+        <nav id="AsideRight" class="collapse">
+          <div class="collapseAside collapseAsideRight" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 391">
+              <path
+                fill="#004CFF"
+                d="m1.273 0l3.049 2.142c9.488 6.603 232.185 161.826 238.397 166.475c8.795 6.174 13.281 13.81 13.281 22.668v4.397c-.1 6.842-2.558 16.469-13.28 24.52l-.039.026c-5.166 3.692-57.747 40.12-113.415 78.701c-4.9 3.397-9.858 6.832-14.827 10.275l-3.314 2.297C61.96 345.572 12.62 379.777 5.947 384.498v6.136l-3.641-6.124c-.177-.315-.34-.58-.151-1.008H2.04v-32.03c0-10.924 1.21-16.178 13.37-24.28c5.179-3.33 49.529-33.955 94.578-65.128l5.3-3.668c41.513-28.73 82.338-57.033 92.364-63.974C186.484 179.718 27.796 69.554 16.923 61.59l-1.286-.932C7.598 54.836 1.273 50.25 1.273 38.128zM21.86 111.361c10.736 6.905 114.562 78.954 115.608 79.697l2.356 1.626l-2.394 1.6s-7.018 4.675-14.805 10.118c-6.666 4.889-12.903 7.333-19.102 7.333c-5.506 0-10.962-1.915-16.708-5.733c-6.12-4.086-23.363-15.98-40.816-28.064l-2.38-1.648A27213 27213 0 0 1 .832 146.592l-.832-.58v-24.47c0-5.62 2.42-10.067 6.666-12.222c4.548-2.318 10.231-1.562 15.195 2.041" />
+            </svg>
+          </div>
+          <div class="screen screenShow" id="screenMazeSetting">
+            <div class="setting">
+              <!-- set row and col -->
+              <div class="settingGroup">
+                <label for="Row">Row</label>
+                <input id="Row" type="number" value="50" min="1" max="100" />
+              </div>
+              <div class="settingGroup">
+                <label for="Col">Col</label>
+                <input id="Col" type="number" value="50" min="1" max="100" />
+              </div>
+              <div class="settingGroup">
+                <label for="FindPath">FindPath</label>
+                <input id="FindPath" type="checkbox" />
+              </div>
+              <div class="settingGroup">
+                <label for="Dynamic">Dynamic</label>
+                <input id="Dynamic" type="checkbox" checked />
+              </div>
+              <div class="settingGroup">
+                <label for="Speed">Speed</label>
+                <input id="Speed" type="number" min="1" value="4"/>
+              </div>
+              <div class="settingGroup">
+                <label for="Start">Start</label>
+                <input id="Start" type="text" disabled />
+              </div>
+              <div class="settingGroup">
+                <label for="End">End</label>
+                <input id="End" type="text" disabled />
+              </div>
+              <div class="settingGroup">
+                <label for="DistanceX">WeightX</label>
+                <input id="DistanceX" type="number" value="1" min="1" />
+              </div>
+              <div class="settingGroup">
+                <label for="DistanceY">WeightY</label>
+                <input id="DistanceY" type="number" value="1" min="1" />
+              </div>
+            </div>
+          </div>
+
+        </nav>
+        <!--  -->
+      </main>
+    </div>
+  </body>
+  <script src="./script/main.js"></script>
+  <script src="./script/generateAlgorithm.js"></script>
+  <script src="./script/searchAlgorithm.js"></script>
+  <script src="./script/auxilaryFunc.js"></script>
+  <script src="./script/EventListener.js"></script>
+  <script src="./script//dataStructure.js"></script>
+</html>
+
+<style>
+  :root{
+    --primary-color: rgba(0, 255, 255, 0.413);
+    --hover-color: rgba(0, 0, 0, 0.119);
+    --tertiary-color: #FF4500;
+    --quaternary-color: #FF6347;
+    --border-color:rgba(0, 0, 0, 0.767);
+  }
+  .customMaze{
+      display: none;
+      width: 800px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid var(--border-color);
+  }
+  header{
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      svg{
+          width: 50px;
+          height: 50px;
+          margin-right: 30px;
+          transition: all 0.5s ease;
+          &:hover{
+              transform: scale(1.1);
+              cursor: pointer;
+          }
+          a{
+              text-decoration: none;
+              z-index: 1000;
+          }
+      }
+  }
+  main{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  footer{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+  input{
+      margin: 10px;
+      text-align: left;
+      vertical-align: top;
+  }
+  button{
+      margin: 10px;
+  }
+  #userInput{
+      font-size: 20px;
+      width: 300px;
+      height: 300px;
+  }
+  #fileInput{
+      margin: 10px;
+      color: white;
+  }
+  #StartInput{
+      width: 100px;
+  }
+  #EndInput{
+      width: 100px;
+  }
+  .buttonArea{
+    button{
+        height: 40px;
+        font-size: 15px;
+        cursor: pointer;
+        padding: 0 5px;
+        transition: all 0.5s ease;
+    }
+  }
+
+</style>
+
+<style>
+  .collapseAsideRight {
+    z-index: 100;
+    transform: scaleX(-1);
+    &:hover {
+      transform:scaleX(-1) scale(1.1);
+    }
+  }
+  .collapseAsideLeft {
+    z-index: 100;
+    transform: scaleX(1);
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  nav#AsideRight {
+    #screenMazeSetting {
+      transition: all 0.5s ease;
+      width: 100%;
+      height: 100%;
+      .setting{
+        aspect-ratio: 0;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 100%;
+      }
+    }
+    &.collapse {
+      .setting {
+        transform: translateX(100%);
+        opacity: 0;
+        
+      }
+      .collapseAsideRight {
+        z-index: 100;
+        transform: scaleX(1);
+        &:hover {
+          transform:scaleX(1) scale(1.1);
+        }
+  }
+    }
+  }
+
+</style>
+
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    border: var(--border-color) 5px solid;
+  }
+  header {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px var(--border-color) solid;
+    img{
+        margin: 0;
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        z-index: 1000;
+        right: 10px;
+    }
+  }
+  main {
+    position: relative;
+    height: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    overflow: hidden;
+  }
+  nav {
+    flex: 30;
+    height: 100%;
+    border: solid 2px var(--border-color);
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    menu {
+      width: 100%;
+      transition: all 0.5s ease;
+      border: 2px var(--border-color) solid;
+    }
+  }
+ 
+</style>
+
+<style>
+  .catBox {
+   
+    position: relative;
+    width: 100%;
+    img{
+        transition: all 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        &:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        position: absolute;
+        z-index: 10;
+        &:nth-child(1) {
+          top: 80px;
+          left: 80px;
+        }
+        &:nth-child(2) {
+          top: 20px;
+          left: 300px;
+        }
+        &:nth-child(3) {
+          top: 290px;
+          left: 240px;
+        }
+        &:nth-child(4) {
+          top: 260px;
+          left: 20px;
+        }
+    }
+  }
+    
+  .collapseAside {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    height: auto;
+    margin: 5px 0;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    svg {
+      width: 30px;
+      height: 30px;
+      transform: scaleX(-1);
+    }
+
+  }
+  .optionList {
+    width: 100%;
+    height: auto;
+    min-height: 70px;
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 25px;
+    position: relative;
+    cursor: pointer;
+    label {
+      width: 100%;
+      padding-left: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      cursor: pointer;
+      position: absolute;
+      border: 2px var(--border-color) solid;
+    }
+    &#MazeLabel {
+      margin-top: 40px;
+    }
+    &:hover label {
+      background-color: var(--hover-color);
+    }
+  }
+
+  .optionGroup {
+    top: 70px;
+    overflow: hidden;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    list-style: none;
+    padding-left: 10px;
+    position: relative;
+    transition: all 0.5s ease;
+    li {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        &.blank {
+          height: 70px;
+      }
+      &:hover {
+        background-color: var(--hover-color);
+        transform: scale(1.1) translateX(15px); 
+      }
+    }
+  }
+  .collapse {
+    flex: 3;
+  }
+  nav.collapse .collapseAside {
+    z-index: 1;
+    transform: scale(-1);
+  }
+  nav.collapse menu {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  header p {
+    width: 200px;
+    font-size: 90px;
+    font-family: "Baskerville Old Face";
+    transform: skewX(-30deg) translateX(20px);
+  }
+  ul[custom-id="GenerateAlgorithm"].show {
+    height: 200px;
+  }
+  ul[custom-id="SearchAlgorithm"].show  {
+    height: 230px;
+  }
+</style>
+
+<style>
+  .MazeCanvas {
+    width: 80%;
+    max-width: 800px;
+    aspect-ratio: 1/1;
+    background-color: #ffffff;
+    border: solid 3px var(--border-color);
+  }
+</style>
+
+<style>
+ #display {
+    flex: 70;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .screen {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .screenShow {
+    z-index: 10;
+    opacity: 1;
+    display: flex;
+    position: absolute;
+  }
+  .setting {
+    transition: all 0.5s ease;
+    width: 80%;
+    max-width: 800px;
+    aspect-ratio: 1/1;
+    background-color: #fff;
+    border: 2px var(--border-color) solid;
+  }
+  .settingGroup {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px var(--border-color) solid;
+    label {
+      font-size: 30px;
+    }
+    input {
+      width: 80px; 
+      height: 30px;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+</style>
