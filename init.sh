@@ -51,35 +51,8 @@ cd ../
 
 # deal with the dependency
 
-# -------------------------------------------------
-#wirted the start script
-START_SCRIPT="
-pm2 stop all
-pm2 start backend/app.js
-serve -s frontend/dist -p 8080
-"
 
-echo "${START_SCRIPT}" | sudo sh -c 'cat > /usr/bin/vblogStart.sh'
-sudo chmod +x "/usr/bin/vblogStart.sh"
-# -------------------------------------------------
-# register the vblog service
-SERVICE_CONTENT="
-[Unit]
-Description=VBlog Service,customized service
-After=network.target
 
-[Service]
-Type=simple
-ExecStart=/usr/bin/vblogStart.sh
-ExecStop=/usr/bin/vblogStop.sh
-WorkingDirectory=${PWD}
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-"
-
-echo "${SERVICE_CONTENT}" | sudo sh -c 'cat > /etc/systemd/system/vblog.service'
 
 sudo systemctl daemon-reload
 

@@ -49,8 +49,6 @@ app.use(function(err, req, res, next) {
 });
 
 // set the host and port to run the server
-const host = '0.0.0.0';
-const port = 3000;
 
 app.listen(serverConfig.port, serverConfig.host, () => {
   console.log(`Server is running at http://${serverConfig.host}:${serverConfig.port}/`);

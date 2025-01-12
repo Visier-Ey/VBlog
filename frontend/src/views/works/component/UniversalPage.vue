@@ -1,15 +1,15 @@
 <template>
   <div class="universalPage" ref="universalPage">
     <SpecialBack class="SpecialBack" @click="specialBack"/>
-    <div class="universalCardLeft" v-if="false">
-      <div class="toolLine"><input type="text">
-        <el-icon>
-          <Search/>
-        </el-icon>
-      </div>
+    <div class="universalCardLeft" v-if="true">
+<!--      <div class="toolLine"><input type="text">-->
+<!--&lt;!&ndash;        <el-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;          <Search/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </el-icon>&ndash;&gt;-->
+<!--      </div>-->
       <UniversalBlogBrief/>
     </div>
-    <div class="universalCardRight" v-if="false">
+    <div class="universalCardRight" v-if="true">
 
     </div>
 
@@ -25,6 +25,7 @@ import SpecialBack from "./SpecialBack.vue";
 import {onMounted, ref} from "vue";
 import SwitchBoll from "../../component/SwitchBoll.vue";
 import {Search} from "@element-plus/icons-vue";
+import {ElIcon} from "element-plus";
 import router from "../../../router";
 
 const universalPage = ref<HTMLDivElement | null>(null);
@@ -101,6 +102,7 @@ onMounted(() => {
 }
 
 .universalCardLeft {
+  z-index: 1000;
   position: absolute;
   padding: 20px;
   top: 50px;
@@ -114,6 +116,7 @@ onMounted(() => {
 }
 
 .universalCardRight {
+  z-index: 1000;
   position: absolute;
   right: 40px;
   width: 30%;

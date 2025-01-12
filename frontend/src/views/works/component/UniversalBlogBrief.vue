@@ -1,13 +1,17 @@
 <script setup>
-
+import router from "../../../router/index.js";
+import {httpBaseUrl} from "../../../../custom.config.js";
+const universalBlogCardClick = () => {
+  location.href = `${httpBaseUrl}/Works/JS/MazeGS/index.html`;
+}
 </script>
 
 <template>
   <div class="universalBlogBrief">
-    <div class="universalBlogCard">
-      <div class="title">OOPDESIGN</div>
+    <div class="universalBlogCard" @click="universalBlogCardClick">
+      <div class="title">MazeGS</div>
       <div class="right">
-        <div class="date">2023/10/15</div>
+        <div class="date">2024/12/26</div>
         <div class="category">Program</div>
       </div>
     </div>

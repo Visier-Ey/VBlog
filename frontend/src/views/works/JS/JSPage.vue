@@ -1,6 +1,6 @@
 <script setup>
-
 import UniversalPage from "../component/UniversalPage.vue";
+
 </script>
 
 <template>

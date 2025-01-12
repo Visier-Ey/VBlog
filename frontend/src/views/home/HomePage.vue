@@ -35,7 +35,7 @@
 import {onBeforeMount, onMounted, reactive, ref} from "vue";
 import Profile from "./components/Profiles/Profile.vue";
 import DynamicBg from "../component/DynamicBg.vue";
-import {getLifeChips} from '../../api/lifeChips';
+// import {getLifeChips} from '../../api/lifeChips';
 import {getUser} from '../../api/users';
 import Nav from "./components/HomeNav.vue";
 import AsideBar from "../component/AsideBar.vue";
@@ -66,12 +66,13 @@ const bg = reactive({
 onBeforeMount(async () => {
   getUser().then(res => {
     profile.value = res.data[0];
+    console.log(profile.value);
   });
-  const res = await getLifeChips();
-  // get the lifeChips
-  res.data.forEach((item, index) => {
-    item.date = new Date(item.date).toLocaleDateString();
-  });
+  // const res = await getLifeChips();
+  // // get the lifeChips
+  // res.data.forEach((item, index) => {
+  //   item.date = new Date(item.date).toLocaleDateString();
+  // });
   // lifeChips.value = res.data;
 })
 onMounted(async () => {

@@ -1,6 +1,4 @@
 const db = require('../db/index.js');
-const sourceBaseUrl = require('../config/index.js').serverBaseUrl;
-const baseUrl = sourceBaseUrl
 
 // return the users' information
 exports.getUsersInfo = (req, res) => {
