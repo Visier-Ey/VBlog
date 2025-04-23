@@ -154,7 +154,7 @@ const activities = [
     ],
     color: 'green',
     timestamp: '2024/11/3',
-  }, {}
+  }
 ]
 
 // back to home function
@@ -179,6 +179,7 @@ setInterval(() => {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  padding: 40px;
 }
 
 .el-card {
@@ -190,7 +191,7 @@ setInterval(() => {
 .el-timeline {
   position: relative;
   color: white;
-  top: 50px;
+  top: 10px;
   left: -50px;
 
   :deep(.el-timeline-item__content) {

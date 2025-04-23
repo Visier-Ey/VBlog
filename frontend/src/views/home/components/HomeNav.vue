@@ -94,12 +94,13 @@ const props = defineProps<Props>();
   position: relative;
 
   .user {
-    font-family: "Baskerville Old Face";
+    color: rgba(255, 255, 255, 0.9);
+    font-family: "Potra";
     position: absolute;
     left: 5%;
     padding: 0 10px;
     font-weight: 70;
-    font-size: 70px;
+    font-size: 100px;
     top: 0;
     transform: skewX(-20deg);
     z-index: 2001;
@@ -156,11 +157,12 @@ const props = defineProps<Props>();
       margin: 0;
       overflow-y: hidden;
       height: 0;
-      opacity: 1;
+      opacity: 0;
 
       .link:hover {
         cursor: pointer;
         transform: skewX(-10deg);
+        opacity: 1;
       }
     }
   }
@@ -175,8 +177,8 @@ const props = defineProps<Props>();
     margin: 0;
     padding: 0 10px;
     transition: all 0.3s ease;
-    font-family: "Berlin Sans FB Demi";
-    font-size: 25px;
+    font-family: "D-DIN-PRO";
+    font-size: 30px;
     background: inherit;
 
     &:hover {

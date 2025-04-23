@@ -1,0 +1,16 @@
+/* 在src/assets/css/fonts.css或类似文件中 */
+@font-face {
+    font-family: 'Potra';
+    src: url('Potra.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* 可选，控制字体加载行为 */
+}
+
+@font-face {
+    font-family: 'D-DIN-PRO';
+    src: url('D-DIN-PRO.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* 可选，控制字体加载行为 */
+}
