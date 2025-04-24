@@ -3,8 +3,11 @@ import {createRouter, createWebHistory} from 'vue-router'
 const routes = [
     {
         path: '/',
-        component: () => import('../views/component/Basic.vue'),
         redirect: '/home',
+    },
+    {
+        path: '/BFrame',
+        component: () => import('../views/frames/BFrame/BFrame.vue'),
         children: [
             {
                 name: 'home',
@@ -26,7 +29,7 @@ const routes = [
                         path: '/OpenGL',
                         component: () => import('../views/works/C++/C++Page.vue'),
                         meta: {title: 'OpenGL(C/C++)'}
-                    },{
+                    }, {
                         name: 'Tech',
                         path: '/Tech',
                         component: () => import('../views/works/Tech/techPage.vue'),
@@ -38,7 +41,7 @@ const routes = [
             {
                 name: 'others',
                 path: '/others',
-                component: () => import('../views/component/Nav.vue'),
+                component: () => import('../views/components/Nav/components/UniversalNav.vue'),
                 children: [
                     {
                         name: 'contact',
@@ -87,7 +90,7 @@ const routes = [
                     // others routes
                 ]
             }
-            ,{
+            , {
                 name: 'visitorProfile',
                 path: '/visitorProfile',
                 component: () => import('../views/visitor/VisitorPage.vue'),

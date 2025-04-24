@@ -24,7 +24,7 @@
 import {getEvents, getNotices} from "../../api/recent.js";
 import {onBeforeMount, onMounted, ref} from "vue";
 import {loadMarkdownFile} from "../../component/markdown";
-import RecentCellBg from "./RecentCellBg.vue";
+import RecentCellBg from "../components/Bg/RecentCellBg.vue";
 
 const notices = ref({content: ''});
 
@@ -39,7 +39,7 @@ onMounted(async () => {
   notices.value = (await getNotices()).data[0];
   setTimeout(() => {
     recent.value?.classList.add('enter');
-  }, 800);
+  }, 400);
 });
 </script>
 
@@ -66,7 +66,7 @@ onMounted(async () => {
     color: black;
     font-size: 150px;
     overflow: hidden;
-    transition: all 5s linear 0.3s;
+    transition: all 0.8s cubic-bezier(0.2,0.3,0.2,-0.1) 0.3s;
 
     span {
       position: relative;
@@ -87,6 +87,8 @@ onMounted(async () => {
     align-items: flex-start;
     flex-direction: row;
     color: black;
+    font-family: "Potra";
+    padding-bottom: 40px;
   }
 
   --main-color: rgb(0, 255, 231);

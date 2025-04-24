@@ -2,7 +2,11 @@
   <main>
     <div class="basic">
       <SwitchBoll :scale="isScaled"></SwitchBoll>
-      <router-view/>
+      <BlurFrame
+        :blur="isScaled"
+      >
+        <router-view/>
+      </BlurFrame>
     </div>
     <div class="basicFooter" ref="footer">
       <Footer />
@@ -17,10 +21,11 @@
 
 
 <script lang="ts" setup>
-import Footer from "../component/Footer.vue";
-import SwitchBoll from "../component/SwitchBoll.vue";
+import Footer from "./components/Footer.vue";
+import SwitchBoll from "./components/SwitchBoll.vue";
 import {computed, ref} from "vue";
 import { useRouter } from 'vue-router'
+import BlurFrame from "../BlurFrame/BlurFrame.vue";
 
 const isScaled = ref(false)
 const router = useRouter()
@@ -44,8 +49,8 @@ router.beforeEach((to, from, next) => {
     next()
     setTimeout(()=>{
       handleMounted()
-    },600)
-  },600)
+    },300)
+  },500)
 
 })
 
@@ -64,7 +69,7 @@ window.addEventListener('scroll', function() {
   width: 100vw;
   display: flex;
   position: relative;
-  overflow: hidden;
+  overflow-y: visible;
   min-width: 1500px;
   min-height: 1000px;
 }

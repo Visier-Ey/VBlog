@@ -36,7 +36,7 @@ import {ElTimeline,ElTimelineItem,ElCard} from 'element-plus';
 import 'element-plus/dist/index.css';
 import {MoreFilled} from '@element-plus/icons-vue'
 import {ref} from 'vue'
-import DynamicBg from "../../component/DynamicBg.vue";
+import DynamicBg from "../../components/Bg/DynamicBg.vue";
 import {formatDate} from "../../../component/format/formatDate.js";
 
 // set background video
@@ -87,13 +87,13 @@ const activities = [
     title: 'Refactor Work',
     content: ['Refactor the BlogsPage',
       'Refactor some components and pages',
-      'Encapsulated the markdown component'],
+      'Encapsulated the markdown components'],
     size: 'large',
     timestamp: '2024/10/4',
   },
   {
     title: 'Basic construction completed',
-    content: ['Add the LifeChips component',
+    content: ['Add the LifeChips components',
       'Almost completed the LifeChipPhoto and LifeChipVideo components',
       'Improve the linux initial bash script'],
     size: 'large',
@@ -101,7 +101,7 @@ const activities = [
   },
   {
     title: 'Basic construction completed',
-    content: ['Continue to improve the lifeChips component'],
+    content: ['Continue to improve the lifeChips components'],
     size: 'large',
     timestamp: '2024/10/7',
   }, {
@@ -154,6 +154,16 @@ const activities = [
     ],
     color: 'green',
     timestamp: '2024/11/3',
+  }, {
+    title: 'Refactor Work',
+    content: [
+      'Refactor the The Project',
+      'Change the mysql to sqlite3',
+      'Refactor Some transition with router interceptor',
+      'Replace the system fonts with self fonts'
+    ],
+    color: 'green',
+    timestamp: '2025/4/24',
   }
 ]
 

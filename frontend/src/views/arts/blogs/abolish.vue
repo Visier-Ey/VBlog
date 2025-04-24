@@ -63,7 +63,7 @@
 <script lang="ts" setup>
 import {ArrowLeft} from '@element-plus/icons-vue'
 import BlogBriefs from "./components/BlogBriefs.vue";
-import DynamicBg from "../../component/DynamicBg.vue";
+import DynamicBg from "../../components/Bg/DynamicBg.vue";
 import {zeroWidthEncrypt} from "../../../component/encryp";
 // set user
 const user = localStorage.getItem('user').toUpperCase();

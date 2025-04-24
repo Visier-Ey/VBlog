@@ -1,7 +1,7 @@
 <template>
   <!-- scale timing in the logical control part Nav -->
   <div class="SwitchBollWrapper scale" ref="Wrapper">
-    <div class="SwitchBoll " ref="boll">
+    <div class="SwitchBoll">
 
     </div>
   </div>
@@ -11,7 +11,6 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue";
 
-const boll = ref<HTMLElement | null>(null)
 const Wrapper = ref<HTMLElement | null>(null)
 
 const props = defineProps({

@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import DynamicBg from "../../component/DynamicBg.vue";
+import DynamicBg from "../../components/Bg/DynamicBg.vue";
 import {zeroWidthEncrypt} from "../../../component/encryp";
 import {loadMarkdownFile} from "../../../component/markdown";
 import {onMounted, ref} from "vue";

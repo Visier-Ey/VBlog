@@ -1,5 +1,5 @@
 <script setup>
-import {httpBaseUrl} from "../../../custom.config.js";
+import {httpBaseUrl} from "../../../../../custom.config.js";
 
 
 const domain = httpBaseUrl.split("//")[0]+"//"+ httpBaseUrl.split('//')[1].split(':')[0];

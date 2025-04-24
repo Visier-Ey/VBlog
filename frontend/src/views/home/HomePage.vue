@@ -1,5 +1,5 @@
 <template>
-  <div class="page blurPage" ref="page">
+  <div class="page">
     <DynamicBg
         :bg="bg"
     />
@@ -8,7 +8,6 @@
     <div class="container">
       <div class="header">
         <Nav
-            :page="page"
             :nick="profile.nick"
         />
       </div>
@@ -19,13 +18,13 @@
         ></Profile>
       </div>
 
-      <div class="Cycle-Image">
-        <div class="LifeLabel">BEST WISH!</div>
-        <CycleImage
-            v-if="lifeChips.length > 0"
-            :chip="lifeChips"
-        ></CycleImage>
-      </div>
+<!--      <div class="Cycle-Image">-->
+<!--        <div class="LifeLabel">BEST WISH!</div>-->
+<!--        <CycleImage-->
+<!--            v-if="lifeChips.length > 0"-->
+<!--            :chip="lifeChips"-->
+<!--        ></CycleImage>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
@@ -34,15 +33,14 @@
 //   here set the blogger name
 import {onBeforeMount, onMounted, reactive, ref} from "vue";
 import Profile from "./components/Profiles/Profile.vue";
-import DynamicBg from "../component/DynamicBg.vue";
+import DynamicBg from "../components/Bg/DynamicBg.vue";
 // import {getLifeChips} from '../../api/lifeChips';
 import {getUser} from '../../api/users';
-import Nav from "./components/HomeNav.vue";
-import AsideBar from "../component/AsideBar.vue";
+import Nav from "../components/Nav/components/HomeNav.vue";
+import AsideBar from "../components/AsideBar.vue";
 import CycleImage from "./components/CycleImage.vue";
 //  import the briefs of the blog
 const lifeChips = ref([]);
-const page = ref<HTMLElement | null>(null)
 
 const profile = ref({
   name: '',
@@ -81,10 +79,6 @@ onMounted(async () => {
     top: 1,
     behavior: 'smooth'
   });
-  setTimeout(() => {
-    page.value?.classList.remove('blurPage');
-  }, 600);
-
 });
 // set the blogChips
 
@@ -94,12 +88,7 @@ onMounted(async () => {
 <style scoped>
 * {
   box-sizing: content-box;
-  margin: 20px 20px;
   padding: 0;
-}
-
-.page.blurPage {
-  filter: blur(100px);
 }
 
 .page{
@@ -113,17 +102,16 @@ onMounted(async () => {
   width: 100vw;
   height: auto;
   min-width: 1500px;
-  min-height: 1000px;
+  min-height: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .container {
     position: relative;
-    margin: 0 20px 40px;
     width: 100%;
     display: flex;
-    flex: 1;
+    height: 100vh;
     flex-direction: column;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
     transition: all 0.6s ease;
@@ -149,17 +137,11 @@ onMounted(async () => {
   height: auto;
   position: relative;
   margin-bottom: 0;
-  margin-top: 10px;
 }
 
 .profileCard {
   background: linear-gradient(45deg, rgba(232, 0, 248, 0.1), rgba(0, 216, 255, 0.1));
-  height: 1100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  margin: 0 20px;
   z-index: 2000;
 }
 

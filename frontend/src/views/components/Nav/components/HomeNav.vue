@@ -22,7 +22,7 @@
 <!--                      </div>-->
 <!--                    </div>-->
         <!--    Work List        -->
-        <div class="link list" data-custom-id="Works" data-custom-amount="3">{{
+        <div class="link list" data-custom-id="Works" data-custom-amount="2">{{
             zeroWidthEncrypt('WORKS', 'damn!')
           }}
           <div class="group">
@@ -144,7 +144,7 @@ const props = defineProps<Props>();
       position: absolute;
       top: 55px;
       margin: 0;
-      overflow-y: hidden;
+      overflow: hidden;
       height: 0;
       opacity: 0;
 

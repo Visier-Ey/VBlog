@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import {onMounted, reactive} from "vue";
-import DynamicBg from "../../component/DynamicBg.vue";
+import DynamicBg from "../../components/Bg/DynamicBg.vue";
 import Manuscript from "./component/Manuscript.vue";
 import {getPoetry} from "../../../api/arts";
 

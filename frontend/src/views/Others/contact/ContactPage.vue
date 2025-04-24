@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import DynamicBg from "../../component/DynamicBg.vue";
+import DynamicBg from "../../components/Bg/DynamicBg.vue";
 import {reactive} from "vue";
 
 const bg = reactive({

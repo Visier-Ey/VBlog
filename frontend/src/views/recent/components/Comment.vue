@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { formatDateSQL } from '../../component/format/formatDate';
+import { formatDateSQL } from '../../../component/format/formatDate';
 interface Props {
   comment: {
     author: string;

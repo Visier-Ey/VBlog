@@ -15,7 +15,6 @@
 
     <span class="NoWorks" v-for="(items) in wordList" :style="randomStyle()">{{ items }}</span>
     <!--  ----------------------------No Works!-----------------------------  -->
-    <SwitchBoll :scale="isScaled"/>
   </div>
 </template>
 
@@ -23,9 +22,6 @@
 import UniversalBlogBrief from "./UniversalBlogBrief.vue";
 import SpecialBack from "./SpecialBack.vue";
 import {onMounted, ref} from "vue";
-import SwitchBoll from "../../component/SwitchBoll.vue";
-import {Search} from "@element-plus/icons-vue";
-import {ElIcon} from "element-plus";
 import router from "../../../router";
 
 const universalPage = ref<HTMLDivElement | null>(null);

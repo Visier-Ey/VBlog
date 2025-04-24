@@ -88,14 +88,15 @@ const props = defineProps<Props>();
 
 .profile-container {
   position: relative;
-  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  height: 100%;
+  min-height: 100vh;
+  margin: 0 50px;
   width: 95%;
   --layer-color: rgba(40, 255, 230, 0.2);
   backdrop-filter: blur(3px);
+  contain: strict;
 
   .decorate {
     left: 0;
@@ -115,6 +116,7 @@ const props = defineProps<Props>();
       background: rgba(0, 0, 0, 0.5);
       transition: all 1s ease;
       animation: scan 10s ease infinite alternate;
+      contain: strict;
     }
   }
 }
@@ -137,22 +139,21 @@ const props = defineProps<Props>();
 .name {
   color: black;
   position: absolute;
-  top: 0;
+  top: 15px;
   font-size: 150px;
   font-weight: bold;
-  font-family: "Baskerville Old Face";
+  font-family: "BaskOldFace";
   transform: skewX(-25deg);
 }
-
 .WebsiteName {
   z-index: 100;
   color: rgba(255, 255, 255, 0.8);
   position: absolute;
   top: 40px;
-  right: 0;
-  font-size: 130px;
+  right: -40px;
+  font-size: 180px;
   font-weight: bold;
-  font-family: cursive;
+  font-family: ZQZMXS;
   writing-mode: vertical-rl;
 }
 
@@ -265,6 +266,7 @@ const props = defineProps<Props>();
   color: white;
   filter: blur(1px);
   animation: wordsJump 2s ease infinite;
+  contain: strict;
 }
 @keyframes wordsJump {
   0% {
@@ -356,7 +358,7 @@ const props = defineProps<Props>();
   right: -20px;
   top: 10px;
   width: 100%;
-  height: 100%;
+  min-height: 90vh;
   background: inherit;
   overflow: hidden;
 
