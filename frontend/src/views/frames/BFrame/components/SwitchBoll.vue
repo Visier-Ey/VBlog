@@ -18,16 +18,18 @@ const props = defineProps({
   scale: Boolean
 });
 watch(() => props.scale, (newVal) => {
-  if (!props.scale) {
+  if (props.scale) {
     Wrapper.value?.classList.add("scale")
-  }
+  }else Wrapper.value?.classList.remove("scale")
 })
 onMounted(async () => {
   if (props.scale) {
     setTimeout(() => {
-      Wrapper.value?.classList.remove("scale")
+      Wrapper.value?.classList.add("scale")
     }, 600)
-  }
+  }else setTimeout(() => {
+    Wrapper.value?.classList.remove("scale")
+  }, 600)
 })
 </script>
 

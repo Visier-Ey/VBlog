@@ -62,7 +62,6 @@ const setRow = (id: number) => {
     width: 100%;
     height: 200px;
     background: #ef0000;
-    filter: blur(1px);
     animation: colLightWave 2s infinite linear;
   }
 }
@@ -78,7 +77,6 @@ const setRow = (id: number) => {
     width: 200px;
     height: 100%;
     background: #ef0000;
-    filter: blur(1px);
     animation: rowLightWave 3s infinite linear;
   }
 }

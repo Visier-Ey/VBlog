@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="blur-bg blur" ref="blurBg">
+    <div class="blur-bg">
       <div class="header show" ref="header">
         <div class="back-option" @click="backHome">
           <el-icon :size="30">
@@ -13,37 +13,26 @@
       </div>
       <router-view/>
     </div>
-    <SwitchBoll :scale="isScaled"></SwitchBoll>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {ArrowLeft} from '@element-plus/icons-vue'
-import router from "../../router";
+import router from "../../../../router";
 // set the title of the page in different Routes
 import {useRoute} from "vue-router";
 import {onMounted, ref} from "vue";
-import SwitchBoll from "./SwitchBoll.vue";
 
 const header = ref<HTMLDivElement | null>(null);
 const route = useRoute();
-const isScaled = ref(true);
-const blurBg = ref<HTMLDivElement | null>(null);
 // back to the home page
 const backHome = async () => {
   // set the LeaveScale effect
-  isScaled.value = false;
   // set the blur effect
-  blurBg.value.classList?.add('blur');
-  setTimeout(() => {
-    router.push({name: 'home'});
-  }, 600);
+  router.push({name: 'home'});
+
 }
 onMounted(async () => {
-  // set the EnterScale effect
-  setTimeout(() => {
-    blurBg.value?.classList.remove('blur');
-  }, 600);
   let lastScrollTop = 0;
   window.addEventListener('scroll', function () {
     let scrollTop = document.documentElement.scrollTop;
@@ -58,19 +47,6 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.blur-bg {
-  transition: all 0.5s ease;
-  height: auto;
-  width: 100vw;
-  z-index: 5001;
-  left: 0;
-  top: 0;
-}
-
-.blur-bg.blur {
-  filter: blur(100px);
-}
-
 .header.show {
   transform: translateY(0);
   opacity: 1;

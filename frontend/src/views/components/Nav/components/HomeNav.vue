@@ -13,14 +13,14 @@
         <div class="link" data-custom-id="recent" data-custom-amount="3" @click="pageJump">
           {{ zeroWidthEncrypt('RECENT', 'miss my xx') }}
         </div>
-        <!--            <div class="link list" data-custom-id="arts" data-custom-amount="2">{{ encrypt('ARTS', 'visier') }}-->
-        <!--              <div class="group">-->
-        <!--                <div class="link" data-custom-id="blogs" @click="pageJump($event)">{{ encrypt('BLOGS', 'visier') }}-->
-        <!--                </div>-->
-        <!--                <div class="link" data-custom-id="poetry" @click="pageJump($event)">{{ encrypt('POETRY', 'visier') }}-->
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--            </div>-->
+<!--                    <div class="link list" data-custom-id="arts" data-custom-amount="2">{{ encrypt('ARTS', 'visier') }}-->
+<!--                      <div class="group">-->
+<!--                        <div class="link" data-custom-id="blogs" @click="pageJump($event)">{{ encrypt('BLOGS', 'visier') }}-->
+<!--                        </div>-->
+<!--                        <div class="link" data-custom-id="poetry" @click="pageJump($event)">{{ encrypt('POETRY', 'visier') }}-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
         <!--    Work List        -->
         <div class="link list" data-custom-id="Works" data-custom-amount="3">{{
             zeroWidthEncrypt('WORKS', 'damn!')
@@ -53,30 +53,19 @@
       <div class="tool"></div>
       <!--    nav end        -->
     </div>
-    <SwitchBoll :scale="isScaled"></SwitchBoll>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {zeroWidthEncrypt} from "../../../component/encryp";
-import router from "../../../router";
-import SwitchBoll from "../../component/SwitchBoll.vue";
+import {zeroWidthEncrypt} from "../../../../component/encryp";
+import router from "../../../../router";
 import {ref} from "vue";
 
-const isScaled = ref(true);
-// universal page jump function
 const pageJump = async (e) => {
-  // set the LeaveScale effect
-  isScaled.value = false;
-  // set the blur effect
-  props.page?.classList.add('blurPage');
-  setTimeout(() => {
-    router.push({name: e.target.dataset.customId});
-  }, 500);
+  router.push({name: e.target.dataset.customId});
 }
 
 interface Props {
-  page?: HTMLElement | null;
   nick?: string;
 }
 
