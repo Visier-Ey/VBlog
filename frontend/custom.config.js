@@ -1,5 +1,5 @@
 
-export const httpBaseUrl = 'http://127.0.0.1:3000';
+export const httpBaseUrl = 'https://visier.icu/backend';
 
 export const serverConfig = {
     host:'0.0.0.0',
