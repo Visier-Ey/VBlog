@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts" setup>
+import { httpBaseUrl } from "../../../custom.config.js";
 import {getEvents, getNotices} from "../../api/recent.js";
 import {onBeforeMount, onMounted, ref} from "vue";
 import {loadMarkdownFile} from "../../component/markdown";

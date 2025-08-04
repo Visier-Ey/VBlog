@@ -3,7 +3,7 @@
     <DynamicBg
         :bg="bg"
     />
-    <!--    <CollapseSidebar class="collapseSidebar"/>-->
+       <!-- <CollapseSidebar class="collapseSidebar"/> -->
     <AsideBar></AsideBar>
     <div class="container">
       <div class="header">
@@ -18,13 +18,13 @@
         ></Profile>
       </div>
 
-<!--      <div class="Cycle-Image">-->
+     <!-- <div class="Cycle-Image">-->
 <!--        <div class="LifeLabel">BEST WISH!</div>-->
 <!--        <CycleImage-->
 <!--            v-if="lifeChips.length > 0"-->
 <!--            :chip="lifeChips"-->
 <!--        ></CycleImage>-->
-<!--      </div>-->
+<!--      </div> -->
     </div>
   </div>
 </template>
@@ -64,7 +64,6 @@ const bg = reactive({
 onBeforeMount(async () => {
   getUser().then(res => {
     profile.value = res.data[0];
-    console.log(profile.value);
   });
   // const res = await getLifeChips();
   // // get the lifeChips

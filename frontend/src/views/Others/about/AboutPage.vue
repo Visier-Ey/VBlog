@@ -7,6 +7,7 @@ const aboutMd = ref < HTMLDivElement | null > (null);
 onMounted(async () => {
   const about = (await getAbout()).data;
   if (about.length > 0) {
+    console.log(about[0].url);
     loadMarkdownFile(about[0].url, aboutMd);
   }
 });

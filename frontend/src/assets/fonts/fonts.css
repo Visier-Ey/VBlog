@@ -26,7 +26,7 @@
 
 @font-face {
     font-family: 'ZQZMXS';
-    src: url('ZQZMXS.ttf') format('truetype');
+    src: url('zqzmxs.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* 可选，控制字体加载行为 */

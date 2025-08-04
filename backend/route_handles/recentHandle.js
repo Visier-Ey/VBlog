@@ -1,6 +1,5 @@
 const db = require('../db/index.js');
-const sourceBaseUrl = require('../config/index.js').serverBaseUrl;
-const baseUrl = sourceBaseUrl + '/recentAndAbout/';
+const baseUrl = '/recentAndAbout/';
 
 // 统一错误处理函数
 const handleError = (err, res) => {
