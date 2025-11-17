@@ -60,6 +60,7 @@ onMounted(async () => {
   transition: all 0.8s ease;
 }
 .blurUnder{
+  width: 100%;
   position: absolute;
   z-index: 10;
 }

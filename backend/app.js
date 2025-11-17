@@ -4,12 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var artsRouter = require('./routes/arts');
 var lifeChipsRouter = require('./routes/lifeChips');
 var recentRouter = require('./routes/recent');
 var visitorRouter = require('./routes/visitors');
+var postcardLayoutsRouter = require('./routes/postcardLayouts');
+var projectsRouter = require('./routes/projects');
 var serverConfig = require('./config/index.js').serverConfig;
 const { jwtMiddleware } = require('./jwt/index.js');
 
@@ -26,12 +27,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(jwtMiddleware);
-app.use('/', indexRouter);
-app.use('/user', usersRouter);
-app.use('/arts', artsRouter);
-app.use('/lifeChips', lifeChipsRouter);
-app.use('/recent', recentRouter);
-app.use('/visitors', visitorRouter);
+app.use('/backend/user', usersRouter);
+app.use('/backend/arts', artsRouter);
+app.use('/backend/lifeChips', lifeChipsRouter);
+app.use('/backend/recent', recentRouter);
+app.use('/backend/visitors', visitorRouter);
+app.use('/backend/postcardLayouts', postcardLayoutsRouter);
+app.use('/backend/projects', projectsRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

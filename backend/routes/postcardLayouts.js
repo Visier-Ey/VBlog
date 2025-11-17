@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+const {getLayouts} = require('../route_handles/postcardLayoutsHandle');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'VISIER' });
-});
+router.get('/get', getLayouts);
+
 
 module.exports = router;

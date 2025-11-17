@@ -1,77 +1,73 @@
-34c8bdaa
-
 <template>
   <div class="Nav-wrapper">
-    <!--        set blogger name-->
     <div class="user">
       {{ props.nick.toUpperCase() || 'VISIER' }}
     </div>
+
     <div class="nav">
-      <!--          you know, the nav options-->
       <div class="menu">
-        <div class="link" data-custom-id="home">{{ zeroWidthEncrypt('HOME', 'visier homeless') }}</div>
-        <div class="link" data-custom-id="recent" data-custom-amount="3" @click="pageJump">
-          {{ zeroWidthEncrypt('RECENT', 'miss my xx') }}
-        </div>
-<!--                    <div class="link list" data-custom-id="arts" data-custom-amount="2">{{ encrypt('ARTS', 'visier') }}-->
-<!--                      <div class="group">-->
-<!--                        <div class="link" data-custom-id="blogs" @click="pageJump($event)">{{ encrypt('BLOGS', 'visier') }}-->
-<!--                        </div>-->
-<!--                        <div class="link" data-custom-id="poetry" @click="pageJump($event)">{{ encrypt('POETRY', 'visier') }}-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-        <!--    Work List        -->
-        <div class="link list" data-custom-id="Works" data-custom-amount="2">{{
-            zeroWidthEncrypt('WORKS', 'damn!')
-          }}
-          <div class="group">
-            <div class="link" data-custom-id="OpenGL" @click="pageJump">{{
-                zeroWidthEncrypt('OpenGL', 'visier')
-              }}
-            </div>
-            <div class="link" data-custom-id="JS" @click="pageJump">{{ zeroWidthEncrypt('JS', 'visier') }}</div>
-          </div>
-        </div>
-        <!--      Other List        -->
-        <div class="link list" data-custom-id="others" data-custom-amount="3">{{
-            zeroWidthEncrypt('OTHERS', 'visier')
-          }}
-          <div class="group">
-            <div class="link" data-custom-id="TimeTravel" @click="pageJump">
-              {{ zeroWidthEncrypt('T-TRAVEL', 'visier') }}
-            </div>
-            <div class="link" data-custom-id="contact" @click="pageJump">
-              {{ zeroWidthEncrypt('CONTACT', 'visier') }}
-            </div>
-            <div class="link" data-custom-id="about" @click="pageJump">{{ zeroWidthEncrypt('ABOUT', 'visier') }}
+
+        <!-- 动态生成菜单 -->
+        <div 
+          v-for="item in navigation" 
+          :key="item.name"
+          class="link"
+          :class="{ list: item.items }"
+          :data-custom-id="item.name"
+          :data-custom-amount="item.items ? item.items.length : 0"
+          @click="() => handleClick(item)"
+        >
+          {{ zeroWidthEncrypt(item.name.toUpperCase(), 'visier') }}
+
+          <!-- 子菜单 -->
+          <div v-if="item.items" class="group">
+            <div 
+              v-for="child in item.items"
+              :key="child.name"
+              class="link"
+              :data-custom-id="child.name"
+              @click="() => handleClick(child)"
+            >
+              {{ zeroWidthEncrypt(child.name.toUpperCase(), 'visier') }}
             </div>
           </div>
         </div>
+
       </div>
-      <!--          setting,searching...-->
+
       <div class="tool"></div>
-      <!--    nav end        -->
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {zeroWidthEncrypt} from "../../../../component/encryp";
+import { ref, onMounted } from "vue";
+import { zeroWidthEncrypt } from "../../../../utils/encryp";
 import router from "../../../../router";
-import {ref} from "vue";
 
-const pageJump = async (e) => {
-  router.push({name: e.target.dataset.customId});
+interface NavItem {
+  name: string;
+  link: string;
+  items?: NavItem[];
 }
+
+const navigation = ref<NavItem[]>([]);
+
+const handleClick = (item: NavItem) => {
+  if (!item.link) return;
+  router.push(item.link);
+};
+
+onMounted(async () => {
+  const res = await fetch("http://localhost:3000/backend/postcardLayouts/get");
+  const json = await res.json();
+  navigation.value = json.navigation.items;
+});
 
 interface Props {
-  nick?: string;
+  nick: string;
 }
-
 const props = defineProps<Props>();
-
-
 </script>
 
 <style scoped>
@@ -161,7 +157,7 @@ const props = defineProps<Props>();
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 140px;
     color: white;
     margin: 0;
     padding: 0 10px;

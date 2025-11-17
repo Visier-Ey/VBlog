@@ -1,4 +1,5 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { pa } from 'element-plus/es/locale/index.mjs'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
@@ -17,24 +18,35 @@ const routes = [
             {
                 name: 'works',
                 path: '/works',
+                component: () => import('../views/components/Nav/components/UniversalNav.vue'),
                 children: [
                     {
                         name: 'JS',
                         path: '/JS',
                         component: () => import('../views/works/JS/JSPage.vue'),
-                        meta: {title: 'JS'}
+                        meta: { title: 'JS' }
                     },
                     {
                         name: 'OpenGL',
                         path: '/OpenGL',
                         component: () => import('../views/works/C++/C++Page.vue'),
-                        meta: {title: 'OpenGL(C/C++)'}
+                        meta: { title: 'OpenGL(C/C++)' }
                     }, {
                         name: 'Tech',
                         path: '/Tech',
                         component: () => import('../views/works/Tech/techPage.vue'),
-                        meta: {title: 'Tech'}
-                    }
+                        meta: { title: 'Tech' }
+                    }, {
+                        name: 'Projects',
+                        path: '/Projects',
+                        component: () => import('../views/works/Projects/ProjectsPage.vue'),
+                        meta: { title: 'Projects' }
+                    }, {
+                        path: "/projects/:id",
+                        name: "projectsDetail",
+                        component: () => import("../views/works/Projects/DetailProjectPage.vue"),
+                        props: true,
+                    },
                     //     works routes
                 ]
             },
@@ -47,44 +59,44 @@ const routes = [
                         name: 'contact',
                         path: '/contact',
                         component: () => import('../views/Others/contact/ContactPage.vue'),
-                        meta: {title: 'Contact'}
+                        meta: { title: 'Contact' }
                     },
                     {
                         name: 'TimeTravel',
                         path: '/TimeTravel',
                         component: () => import('../views/Others/T-Travel/TimeTravelPage.vue'),
-                        meta: {title: 'Time-Travel'}
+                        meta: { title: 'Time-Travel' }
 
                     },
                     {
                         name: 'about',
                         path: '/about',
                         component: () => import('../views/Others/about/AboutPage.vue'),
-                        meta: {title: 'About'}
+                        meta: { title: 'About' }
                     },
-                    {
-                        name: 'arts',
-                        path: '/arts',
-                        children: [
-                            {
-                                name: 'blogs',
-                                path: '/blogs',
-                                component: () => import('../views/arts/blogs/BlogsPage.vue'),
-                                meta: {title: 'Blogs'}
-                            },
-                            {
-                                name: 'poetry',
-                                path: '/poetry',
-                                component: () => import('../views/arts/poetry/PoetryPage.vue'),
-                                meta: {title: 'Poetry'}
-                            }
-                        ]
-                    },
+                    // {
+                    //     name: 'arts',
+                    //     path: '/arts',
+                    //     children: [
+                    //         {
+                    //             name: 'blogs',
+                    //             path: '/blogs',
+                    //             component: () => import('../views/arts/blogs/BlogsPage.vue'),
+                    //             meta: {title: 'Blogs'}
+                    //         },
+                    //         {
+                    //             name: 'poetry',
+                    //             path: '/poetry',
+                    //             component: () => import('../views/arts/poetry/PoetryPage.vue'),
+                    //             meta: {title: 'Poetry'}
+                    //         }
+                    //     ]
+                    // },
                     {
                         name: 'recent',
                         path: '/recent',
                         component: () => import('../views/recent/RecentPage.vue'),
-                        meta: {title: 'Recent'}
+                        meta: { title: 'Recent' }
                     },
 
                     // others routes

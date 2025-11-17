@@ -1,38 +1,52 @@
-const db = require('../db/index.js');
+const fs = require('fs');
+const path = require('path');
+
+const userJsonPath =  'Json/profile.json';
+
+// 读取 JSON
+function readJson() {
+    const raw = fs.readFileSync(userJsonPath, 'utf-8');
+    return JSON.parse(raw);
+}
+
+// 写入 JSON
+function writeJson(data) {
+    fs.writeFileSync(userJsonPath, JSON.stringify(data, null, 4), 'utf-8');
+}
 
 // 获取用户信息
 exports.getUsersInfo = (req, res) => {
-    const sql = 'SELECT * FROM user';
-    db.all(sql, [], (err, rows) => {
-        if (err) {
-            console.error('查询错误:', err);
-            return res.status(500).json({ error: '数据库查询失败' });
-        }
-        res.json(rows);
-    });
-}
+    try {
+        const data = readJson();
+        res.json(data);
+    } catch (err) {
+        console.error('读取 JSON 失败:', err);
+        res.status(500).json({ error: '读取用户信息失败' });
+    }
+};
 
-// 更新用户信息
 exports.revisionUserInfo = (req, res) => {
-    const data = req.body;
-    // 动态构建 SET 部分
-    const setClause = Object.keys(data)
-        .map(key => `${key} = ?`)
-        .join(', ');
+    try {
+        const updateData = req.body;
+        const data = readJson();
 
-    const values = Object.values(data);
-    values.push(1); // 添加 WHERE 条件的值
-
-    const sql = `UPDATE user SET ${setClause} WHERE id = ?`;
-
-    db.run(sql, values, function (err) {
-        if (err) {
-            console.error('更新错误:', err);
-            return res.status(500).json({ error: '更新用户信息失败' });
+        const user = data.user;
+        if (!user) {
+            return res.status(404).json({ error: '用户不存在' });
         }
+
+        Object.keys(updateData).forEach(key => {
+            user[key] = updateData[key];
+        });
+
+        writeJson(data);
+
         res.json({
             message: 'success',
-            changes: this.changes // 返回受影响的行数
+            changes: 1
         });
-    });
-}
+    } catch (err) {
+        console.error('写入 JSON 失败:', err);
+        res.status(500).json({ error: '更新用户信息失败' });
+    }
+};

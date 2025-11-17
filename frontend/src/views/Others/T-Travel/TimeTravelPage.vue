@@ -37,7 +37,7 @@ import 'element-plus/dist/index.css';
 import {MoreFilled} from '@element-plus/icons-vue'
 import {ref} from 'vue'
 import DynamicBg from "../../components/Bg/DynamicBg.vue";
-import {formatDate} from "../../../component/format/formatDate.js";
+import {formatDate} from "../../../utils/format/formatDate.js";
 
 // set background video
 const bg = {

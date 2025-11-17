@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import {loadMarkdownFile} from "../../../component/markdown";
+import {loadMarkdownFile} from "../../../utils/markdown";
 import { getAbout } from "../../../api/recent";
 
 const aboutMd = ref < HTMLDivElement | null > (null);

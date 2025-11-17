@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 // deal with the request of /users
 router.get('/get', getUsersInfo);
 
-router.post('/revise', revisionUserInfo);
+router.post('/revision', revisionUserInfo);
 
 
 module.exports = router;

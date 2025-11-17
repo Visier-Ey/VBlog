@@ -1,5 +1,5 @@
-// exports.serverBaseUrl = 'http://127.0.0.1:3000';
-exports.serverBaseUrl = 'https://visier.icu/backend';
+exports.serverBaseUrl = 'http://127.0.0.1:3000';
+// exports.serverBaseUrl = 'https://visier.icu/backend';
 
 exports.dbConfig = {
     host: 'localhost',

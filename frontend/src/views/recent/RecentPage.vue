@@ -24,7 +24,7 @@
 import { httpBaseUrl } from "../../../custom.config.js";
 import {getEvents, getNotices} from "../../api/recent.js";
 import {onBeforeMount, onMounted, ref} from "vue";
-import {loadMarkdownFile} from "../../component/markdown";
+import {loadMarkdownFile} from "../../utils/markdown";
 import RecentCellBg from "../components/Bg/RecentCellBg.vue";
 
 const notices = ref({content: ''});

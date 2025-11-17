@@ -5,7 +5,7 @@
     />
        <!-- <CollapseSidebar class="collapseSidebar"/> -->
     <AsideBar></AsideBar>
-    <div class="container">
+    <div class="containers">
       <div class="header">
         <Nav
             :nick="profile.nick"
@@ -63,7 +63,8 @@ const bg = reactive({
 
 onBeforeMount(async () => {
   getUser().then(res => {
-    profile.value = res.data[0];
+    console.log(res.data);
+    profile.value = res.data.user;
   });
   // const res = await getLifeChips();
   // // get the lifeChips
@@ -106,26 +107,14 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
 
-  .container {
+  .containers {
     position: relative;
-    width: 100%;
+    width: 100vw;
     display: flex;
     height: 100vh;
     flex-direction: column;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
     transition: all 0.6s ease;
-  }
-}
-
-@keyframes flowed {
-  0% {
-    transform: translateY(0) rotateY(0) skewY(-0.4deg);
-  }
-  50% {
-    transform: translateY(4px) rotateY(2deg) skewY(0.2deg);
-  }
-  100% {
-    transform: translateY(0) rotateY(0) skewY(-0.4deg);
   }
 }
 

@@ -1,0 +1,51 @@
+{
+    "navigation": {
+        "items": [
+            {
+                "name": "Home",
+                "link": "/home"
+            },
+            {
+                "name": "Recent",
+                "link": "/recent"
+            },
+            {
+                "name": "Works",
+                "link": "",
+                "items": [
+                    {
+                        "name": "Prjs",
+                        "link": "/projects"
+                    },
+                    {
+                        "name": "Posts",
+                        "link": "/posts"
+                    }
+                ]
+            },
+            {
+                "name": "Others",
+                "link": "",
+                "items": [
+                    {
+                        "name": "T-TRAVEL",
+                        "link": "/TimeTravel"
+                    },
+                    {
+                        "name": "Contact",
+                        "link": "/contact"
+                    },
+                    {
+                        "name": "About",
+                        "link": "/about"
+                    }
+                ]
+            }
+        ]
+    },
+    "partions": {
+        "privacy_policy": "Privacy Policy",
+        "terms_of_service": "Terms of Service",
+        "help": "Help Center"
+    }
+}
