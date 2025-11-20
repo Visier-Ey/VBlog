@@ -25,7 +25,7 @@ const LifeChipStorage = multer.diskStorage({
 // ==== RecentEvent 存储 ====
 const RecentEventStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dir = path.join(__dirname, '../public/recentAndAbout/');
+        const dir = path.join(__dirname, '../public/recent/');
         ensureDir(dir);
         cb(null, dir);
     },
@@ -65,7 +65,7 @@ exports.LifeChipsUpLoad = (req, res, next) => {
 
 // RecentEvents 单文件上传
 exports.RecentEventUpLoad = (req, res, next) => {
-    const upload = multer({ storage: RecentEventStorage }).single('media');
+    const upload = multer({ storage: RecentEventStorage }).single('file');
     upload(req, res, (err) => {
         if (err) return res.status(500).json({ error: err.message });
         if (req.file) req.body.url = req.file.filename;
@@ -87,7 +87,6 @@ exports.ProjectCoverUpload = (req, res, next) => {
 exports.ProjectIntroUpload = (req, res, next) => {
     const upload = multer({ storage: ProjectStorage }).single('introFile');
     upload(req, res, (err) => {
-        console.error('上传介绍文件失败:', err); // 这里打印完整错误堆栈
         if (err) return res.status(500).json({ error: err.message });
         if (req.file) req.body.filename = req.file.filename;
         next();

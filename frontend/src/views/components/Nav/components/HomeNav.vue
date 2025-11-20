@@ -8,26 +8,15 @@
       <div class="menu">
 
         <!-- 动态生成菜单 -->
-        <div 
-          v-for="item in navigation" 
-          :key="item.name"
-          class="link"
-          :class="{ list: item.items }"
-          :data-custom-id="item.name"
-          :data-custom-amount="item.items ? item.items.length : 0"
-          @click="() => handleClick(item)"
-        >
+        <div v-for="item in navigation" :key="item.name" class="link" :class="{ list: item.items }"
+          :data-custom-id="item.name" :data-custom-amount="item.items ? item.items.length : 0"
+          @click="() => handleClick(item)">
           {{ zeroWidthEncrypt(item.name.toUpperCase(), 'visier') }}
 
           <!-- 子菜单 -->
           <div v-if="item.items" class="group">
-            <div 
-              v-for="child in item.items"
-              :key="child.name"
-              class="link"
-              :data-custom-id="child.name"
-              @click="() => handleClick(child)"
-            >
+            <div v-for="child in item.items" :key="child.name" class="link" :data-custom-id="child.name"
+              @click="() => handleClick(child)">
               {{ zeroWidthEncrypt(child.name.toUpperCase(), 'visier') }}
             </div>
           </div>
@@ -127,12 +116,20 @@ const props = defineProps<Props>();
       height: 100px;
     }
 
+    &:hover[data-custom-amount="1"] .group {
+      height: 50px;
+    }
+
     &[data-custom-amount="3"] .link {
       height: 33%;
     }
 
     &[data-custom-amount="2"] .link {
       height: 50%;
+    }
+
+    &[data-custom-amount="1"] .link {
+      height: 100%;
     }
 
     .group {

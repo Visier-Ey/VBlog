@@ -10,6 +10,7 @@ const {
   uploadAttachments,
   uploadCover
 } = require('../route_handles/projectsHandle');
+const { authenticateJWT } = require('../jwt/index.js');
 
 const { ProjectIntroUpload, ProjectAttachmentsUpload, ProjectCoverUpload } = require('../multer/index');
 
@@ -17,18 +18,18 @@ const { ProjectIntroUpload, ProjectAttachmentsUpload, ProjectCoverUpload } = req
 router.get('/list', getProjects);
 
 // 添加新项目
-router.post('/add', addProject);
+router.post('/add', authenticateJWT, addProject);
 
 // 更新项目
-router.put('/update/:id', updateProject);
+router.put('/update/:id', authenticateJWT, updateProject);
 
 // 删除项目
-router.delete('/delete/:id', deleteProject);
+router.delete('/delete/:id', authenticateJWT, deleteProject);
 
-router.post('/uploadIntro/:id', ProjectIntroUpload, uploadIntroFile);
+router.post('/uploadIntro/:id', authenticateJWT, ProjectIntroUpload, uploadIntroFile);
 
-router.post('/uploadAttachments/:id', ProjectAttachmentsUpload, uploadAttachments);
+router.post('/uploadAttachments/:id', authenticateJWT, ProjectAttachmentsUpload, uploadAttachments);
 
-router.post('/uploadCover/:id', ProjectCoverUpload, uploadCover);
+router.post('/uploadCover/:id', authenticateJWT, ProjectCoverUpload, uploadCover);
 
 module.exports = router;

@@ -52,7 +52,7 @@ onMounted(async () => {
   transform: translateX(100%);
   width: 75%;
   height: 75%;
-  background: linear-gradient(135deg, #0000ff, 20%, #4b0082, 60%, #8f00ff);
+  background: linear-gradient(135deg, #b4b4b4, 20%, #313131, 60%, #ffffff);
   transition: filter 0s ease 0s, transform 0.6s ease 0s, opacity 0.6s ease 0s;
   opacity: 1;
   z-index: 10001;

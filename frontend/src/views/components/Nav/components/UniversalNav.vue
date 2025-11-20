@@ -3,9 +3,9 @@
     <div class="blur-bg">
       <div class="header show" ref="header">
         <div class="back-option" @click="backHome">
-          <el-icon :size="30">
+          <!-- <el-icon :size="30">
             <ArrowLeft/>
-          </el-icon>
+          </el-icon> -->
           Back
         </div>
         <span class="slices-char">|</span>
@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-import {ArrowLeft} from '@element-plus/icons-vue'
 import router from "../../../../router";
 // set the title of the page in different Routes
 import {useRoute} from "vue-router";

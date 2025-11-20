@@ -2,7 +2,7 @@
   <div class="VisitorProfilePage">
     <div class="VisitorProfileCard" ref="visitorProfileCard">
       <div class="VisitorProfileLabel">
-        <el-icon @click="backHome"><CloseBold /></el-icon>
+        <!-- <el-icon @click="backHome"><CloseBold /></el-icon> -->
         <el-avatar
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
         />
@@ -30,7 +30,6 @@
 
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import {CloseBold} from "@element-plus/icons-vue";
 import {updateVisitorProfile} from "../../../../api/visitors";
 import {useRouter} from "vue-router";
 const nick = ref('');

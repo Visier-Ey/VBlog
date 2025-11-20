@@ -1,5 +1,6 @@
 const db = require('../db/index.js');
-const baseUrl = '/recentAndAbout/';
+const serverBaseUrl = require('../config').serverBaseUrl;
+const prefix = serverBaseUrl + '/recent/';
 
 // 统一错误处理函数
 const handleError = (err, res) => {
@@ -53,7 +54,7 @@ exports.getRecentEvents = async (req, res) => {
             
             const result = rows.map(item => ({
                 ...item,
-                url: item.url ? baseUrl + item.url : null
+                url: item.url ? prefix + item.url : null
             }));
             res.json(result);
         });
@@ -65,7 +66,9 @@ exports.getRecentEvents = async (req, res) => {
 // 设置最近事件
 exports.setRecentEvents = async (req, res) => {
     try {
-        const { content = '', url = '' } = req.body;
+        const url = req.body.url;
+        const content = '';
+        const type = 'event';
         const sql = 'INSERT INTO recent (content, url, type) VALUES (?, ?, ?)';
         
         db.run(sql, [content, url, 'event'], function(err) {
@@ -90,7 +93,7 @@ exports.getAbout = async (req, res) => {
             
             const result = rows.map(item => ({
                 ...item,
-                url: item.url ? baseUrl + item.url : null
+                url: item.url ? prefix + item.url : null
             }));
             res.json(result);
         });

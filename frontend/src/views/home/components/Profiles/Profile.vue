@@ -10,16 +10,13 @@
     <!--  textArea Here  -->
     <div class="textArea">
       <div class="AdditionalInfo">
-        <div class="niceToMeetYou">Hello! Nice to see you 😀</div>
+        <div class="niceToMeetYou">Hello! Nice to see you </div>
         <div class="selfName">我是<span>{{ props.profile.name.toUpperCase() }}</span></div>
-        <div class="brief">今年{{props.profile.age}}纯情男大一个😚</div>
-        <div class="supply">平常喜欢...(hover it)
-          <div class="hidden">喜欢你😘</div>
-        </div>
-        <!--        <div class="works">Work:{{ props.profile.work || '' }}</div>-->
+        <div class="brief">{{props.profile.age}}岁纯情老男人</div>
+        <p class="supply">平常喜欢Monster Hunter,Devil May Cary,以及假人慢打等系列游戏🎮</p>
       </div>
       <div class="character">
-        <span class="words">Character:</span>
+        <span class="words">简介:</span>
         <div class="brief">
           <span v-for="(char, index) in props.profile.brief.split('')"
                 class="words"
@@ -55,16 +52,8 @@
 import Avatar from "./Avatar.vue";
 import {ref} from "vue";
 
-const user = ref('');
-const brief = ref("Ah! I guess I have to write something here," +
-    "in fact, I don't know what to write, so I just write something here." +
-    "Let me tell you a story..." +
-    "several years ago,I have said some lover talk to my friend." +
-    "I said 'xiao xiao' to her,and she confused with my call," +
-    "yes,her name is 'xiao xiao',too." +
-    "I said,'nothing ,I just want you to xiao xiao.'" +
-    "I mean I want you to be happy." +
-    "I hope you like it.");
+const user = ref('mother fucker');
+const brief = ref("Fuck you asshole!");
 
 interface Profile {
   name: string;
@@ -94,8 +83,8 @@ const props = defineProps<Props>();
   min-height: 100vh;
   margin: 0 50px;
   width: 95%;
-  --layer-color: rgba(40, 255, 230, 0.2);
-  backdrop-filter: blur(3px);
+  --layer-color: rgba(104, 104, 104, 0.2);
+  backdrop-filter: blur(1px);
   contain: strict;
 
   .decorate {
@@ -104,7 +93,7 @@ const props = defineProps<Props>();
     position: absolute;
     width: 13%;
     height: 100%;
-    background: rgba(0, 255, 255, 0.7);
+    background: rgba(52, 52, 52, 0.402);
     overflow: hidden;
     .scanLine {
       filter: blur(5px);
@@ -174,7 +163,10 @@ const props = defineProps<Props>();
     font-size: 20px;
     text-align: left;
   }
-
+  .supply {
+    text-align: left;
+    width: 90%;
+  }
   .character {
     font-size: 20px;
     text-align: left;
@@ -233,24 +225,6 @@ const props = defineProps<Props>();
       font-size: 20px;
     }
 
-    .supply {
-      .hidden {
-        position: relative;
-        opacity: 0;
-        transition: all 0.5s cubic-bezier(0.2, 0.3, 0.2, 0.6);
-        transform: translateY(-20px);
-      }
-
-      &:hover {
-        cursor: pointer;
-
-        .hidden {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    }
-
     & * {
       position: relative;
       left: 30px;
@@ -296,7 +270,7 @@ const props = defineProps<Props>();
 .layer {
   aspect-ratio: 1/1;
   position: absolute;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(67, 67, 67, 0.2);
   transition: all 0.5s ease;
   box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.8);
 }
@@ -306,7 +280,6 @@ const props = defineProps<Props>();
     width: 100%;
     height: 100%;
     animation: rotate 30s linear infinite;
-    background: var(--layer-color);
   }
 
   .bottom-middle {
@@ -314,7 +287,6 @@ const props = defineProps<Props>();
     top: 5%;
     left: 5%;
     animation: rotate 25s linear infinite reverse;
-    background: var(--layer-color);
   }
 
   .middle {
@@ -322,7 +294,6 @@ const props = defineProps<Props>();
     top: 10%;
     left: 10%;
     animation: rotate 20s linear infinite;
-    background: var(--layer-color);
   }
 
   .middle-top {
@@ -330,7 +301,6 @@ const props = defineProps<Props>();
     top: 25%;
     left: 25%;
     animation: rotate 15s linear infinite reverse;
-    background: var(--layer-color);
   }
 
   .top {

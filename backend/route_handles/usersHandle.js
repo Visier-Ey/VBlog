@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { generateJWT } = require('../jwt');
 
 const userJsonPath =  'Json/profile.json';
 
@@ -48,5 +49,30 @@ exports.revisionUserInfo = (req, res) => {
     } catch (err) {
         console.error('写入 JSON 失败:', err);
         res.status(500).json({ error: '更新用户信息失败' });
+    }
+};
+
+exports.login = (req, res) => {
+    try {
+        const { password } = req.body;
+        const data = readJson();
+        const user = data.user;
+        if (user.password === password) {
+            const jwt = generateJWT(user);
+            res.json({
+                message: '登录成功',
+                token: jwt,
+                success: true
+            });
+        }
+        else {
+            res.json({
+                message: '密码错误',
+                success: false
+            });
+        }
+    } catch (err) {
+        console.error('读取 JSON 失败:', err);
+        res.status(500).json({ error: '登录失败' });
     }
 };

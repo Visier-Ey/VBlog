@@ -8,12 +8,12 @@
           Notice
         </div>
         <div class="other card">
-          {{  notices.content }}
+          {{  notices.content || '' }}
         </div>
       </div>
       <div class="right card">
         <div class="content">
-          <div id="markdown-content" ref="aboutMd"></div>
+          <div id="markdown-content" ref="aboutMd" class="markdown-body" style="background: transparent;"></div>
         </div>
       </div>
     </div>
@@ -26,6 +26,8 @@ import {getEvents, getNotices} from "../../api/recent.js";
 import {onBeforeMount, onMounted, ref} from "vue";
 import {loadMarkdownFile} from "../../utils/markdown";
 import RecentCellBg from "../components/Bg/RecentCellBg.vue";
+import "github-markdown-css/github-markdown-light.css";
+
 
 const notices = ref({content: ''});
 
@@ -37,7 +39,10 @@ onMounted(async () => {
   if (events.length > 0) {
     loadMarkdownFile(events[0].url, aboutMd);
   }
-  notices.value = (await getNotices()).data[0];
+  notices.value = {
+    content:'',
+    ...((await getNotices()).data[0])
+  };
   setTimeout(() => {
     recent.value?.classList.add('enter');
   }, 400);
@@ -80,7 +85,7 @@ onMounted(async () => {
   }
 
   .main {
-    width: 70%;
+    width: 80%;
     min-height: 300px;
     height: auto;
     display: flex;
@@ -103,6 +108,7 @@ onMounted(async () => {
   background: var(--glass-color);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
   margin-bottom: 20px;
+  overflow: hidden;
   padding: 20px;
 }
 
@@ -131,7 +137,7 @@ onMounted(async () => {
 
 .left {
   height: 100%;
-  width: 40%;
+  width: 35%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;

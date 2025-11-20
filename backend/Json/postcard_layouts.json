@@ -16,10 +16,6 @@
                     {
                         "name": "Prjs",
                         "link": "/projects"
-                    },
-                    {
-                        "name": "Posts",
-                        "link": "/posts"
                     }
                 ]
             },
@@ -34,10 +30,6 @@
                     {
                         "name": "Contact",
                         "link": "/contact"
-                    },
-                    {
-                        "name": "About",
-                        "link": "/about"
                     }
                 ]
             }

@@ -31,19 +31,19 @@ CREATE TABLE IF NOT EXISTS recent (
 );
 
 
-CREATE TABLE IF NOT EXISTS user (
-    name TEXT,
-    avatarUrl TEXT,
-    frameUrl TEXT,
-    brief TEXT,
-    lover TEXT,
-    like TEXT,
-    nick TEXT,
-    work TEXT,
-    age TEXT,
-    school TEXT,
-    id INTEGER
-);
+-- CREATE TABLE IF NOT EXISTS user (
+--     name TEXT,
+--     avatarUrl TEXT,
+--     frameUrl TEXT,
+--     brief TEXT,
+--     lover TEXT,
+--     like TEXT,
+--     nick TEXT,
+--     work TEXT,
+--     age TEXT,
+--     school TEXT,
+--     id INTEGER,
+-- );
 
 
 CREATE TABLE IF NOT EXISTS visitors (
@@ -84,12 +84,9 @@ CREATE TABLE IF NOT EXISTS projects (
 -- (NULL, 'Visier', 'Soul', 'Welcome to world', NULL, NULL),
 -- (NULL, 'Soul', 'Visier', 'Fuck you world', NULL, NULL);
 
--- -- Insert data into recent
--- INSERT INTO recent (type, content, date, url) VALUES 
--- ('notice', 'Lazy Author, Update Randomly', '2024-11-03 12:23:49', NULL),
--- ('about', NULL, '2024-11-03 12:54:45', 'about.md'),
--- ('event', '', '2024-11-03 15:42:54', '1730619774271-839469135.md');
-
+-- Insert data into recent
+INSERT INTO recent (type, content, date, url) VALUES 
+('notice', 'Lazy Author, Update Randomly', '2024-11-03 12:23:49', NULL),
 
 -- -- Insert data into user
 -- INSERT INTO user (name, avatarUrl, frameUrl, brief, lover, like, nick, work, age, school, id) VALUES 

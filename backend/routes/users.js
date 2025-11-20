@@ -1,4 +1,5 @@
-const {getUsersInfo, revisionUserInfo} = require('../route_handles/usersHandle');
+const {getUsersInfo, revisionUserInfo, login} = require('../route_handles/usersHandle');
+const { authenticateJWT } = require('../jwt/index.js');
 
 var express = require('express');
 var router = express.Router();
@@ -13,7 +14,8 @@ router.get('/', function (req, res, next) {
 // deal with the request of /users
 router.get('/get', getUsersInfo);
 
-router.post('/revision', revisionUserInfo);
+router.post('/revision', authenticateJWT, revisionUserInfo);
 
+router.post('/login', login);
 
 module.exports = router;

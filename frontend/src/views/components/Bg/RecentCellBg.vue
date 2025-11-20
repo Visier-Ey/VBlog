@@ -20,7 +20,7 @@ const rowAmount = Math.ceil(height / CellSize);
 
 
 const random = () => {
-  return Math.floor(Math.random() * (1.7) + 0.3);
+  return Math.random() * (1.7) + 0.3;
 };
 const setCol = (id: number) => {
   return {
@@ -41,6 +41,7 @@ const setRow = (id: number) => {
   position: fixed;
   height: 100%;
   width: 100%;
+  filter: blur(5px);
   z-index: -1;
 
   .box {

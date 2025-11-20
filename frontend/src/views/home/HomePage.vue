@@ -1,10 +1,11 @@
 <template>
   <div class="page">
-    <DynamicBg
+    <!-- <DynamicBg
         :bg="bg"
-    />
+    /> -->
+    <NoisyRiver />
        <!-- <CollapseSidebar class="collapseSidebar"/> -->
-    <AsideBar></AsideBar>
+    <!-- <AsideBar></AsideBar> -->
     <div class="containers">
       <div class="header">
         <Nav
@@ -39,6 +40,7 @@ import {getUser} from '../../api/users';
 import Nav from "../components/Nav/components/HomeNav.vue";
 import AsideBar from "../components/AsideBar.vue";
 import CycleImage from "./components/CycleImage.vue";
+import NoisyRiver from "../components/Bg/NoisyRiver.vue";
 //  import the briefs of the blog
 const lifeChips = ref([]);
 
@@ -63,7 +65,6 @@ const bg = reactive({
 
 onBeforeMount(async () => {
   getUser().then(res => {
-    console.log(res.data);
     profile.value = res.data.user;
   });
   // const res = await getLifeChips();

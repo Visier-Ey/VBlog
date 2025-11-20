@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Setting} from '@element-plus/icons-vue'
+// import {Setting} from '@element-plus/icons-vue'
 import {onMounted, ref} from "vue";
 
 const github = ref<SVGSVGElement | null>(null)

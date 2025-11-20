@@ -12,7 +12,7 @@ var visitorRouter = require('./routes/visitors');
 var postcardLayoutsRouter = require('./routes/postcardLayouts');
 var projectsRouter = require('./routes/projects');
 var serverConfig = require('./config/index.js').serverConfig;
-const { jwtMiddleware } = require('./jwt/index.js');
+// const { jwtMiddleware } = require('./jwt/index.js');
 
 var app = express();
 
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(jwtMiddleware);
+// app.use(jwtMiddleware);
 app.use('/backend/user', usersRouter);
 app.use('/backend/arts', artsRouter);
 app.use('/backend/lifeChips', lifeChipsRouter);

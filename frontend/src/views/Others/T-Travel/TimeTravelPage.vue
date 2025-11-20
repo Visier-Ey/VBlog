@@ -1,216 +1,135 @@
 <template>
+  
   <DynamicBg
       :bg="bg"
   />
-  <div class="container">
-    <el-timeline style="max-width: 600px">
-      <el-timeline-item
-          v-for="(activity, index) in activities"
-          :key="index"
-          :icon="activity.icon"
-          :type="activity.type"
-          :color="activity.color"
-          :size="activity.size"
-          :hollow="activity.hollow"
-          :timestamp="activity.timestamp"
-      >
-        <el-card>
-          <h2>{{ activity.title }}</h2>
-          <p v-for="(content,index) in activity.content">{{ index + 1 }}.{{ content }}</p>
-        </el-card>
-      </el-timeline-item>
-      <el-timeline-item
-          :timestamp="now"
-      >
-        <el-card>
-          <h2>Now</h2>
-          <p>Maybe is time to start</p>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
+  <div class="w-full min-h-screen flex flex-col items-center pt-10 px-6">
+    <div class="relative w-full max-w-2xl">
+      <div v-for="(activity, index) in activities" :key="index" class="flex mb-10">
+        <!-- Line + Dot -->
+        <div class="flex flex-col items-center mr-6">
+          <div class="w-3 h-3 rounded-full" :class="activity.color || 'bg-blue-500'"></div>
+          <div class="w-px flex-1 bg-gray-500"></div>
+        </div>
+
+        <!-- Card Content -->
+        <div class="bg-black/50 text-white p-5 rounded-xl shadow-lg w-full">
+          <h2 class="text-xl font-bold mb-2">{{ activity.title }}</h2>
+          <p class="text-sm opacity-70 mb-2">{{ activity.timestamp }}</p>
+          <ul class="list-decimal list-inside space-y-1">
+            <li v-for="(content, idx) in activity.content" :key="idx">{{ content }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- NOW Block -->
+      <div class="flex">
+        <div class="flex flex-col items-center mr-6">
+          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+        </div>
+        <div class="bg-black/50 text-white p-5 rounded-xl shadow-lg w-full">
+          <h2 class="text-xl font-bold mb-2">Now</h2>
+          <p class="opacity-80">Maybe it's time to start</p>
+          <p class="text-sm opacity-50 mt-2">{{ now }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ElTimeline,ElTimelineItem,ElCard} from 'element-plus';
-import 'element-plus/dist/index.css';
-import {MoreFilled} from '@element-plus/icons-vue'
-import {ref} from 'vue'
+import { ref } from 'vue'
+import { formatDate } from '../../../utils/format/formatDate.js'
 import DynamicBg from "../../components/Bg/DynamicBg.vue";
-import {formatDate} from "../../../utils/format/formatDate.js";
-
-// set background video
 const bg = {
   poster: '',
   webm: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1263950/4d466f77edf3265a253fba79d47bc91a37e34920.webm',
   mp4: 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1263950/248954cba9bc08b6e16c676f5c1814ff823af907.mp4',
 }
-// timeline data activities
 const activities = [
   {
     title: 'Basic construction completed',
     content: ['Finished the router', 'Finished the Homepage Skeleton screen', 'Finished the Time-Travel page'],
     timestamp: '2024/9/29',
-    size: 'large',
-    type: 'primary',
-    icon: MoreFilled,
+    color: 'bg-blue-400'
   },
   {
     title: 'Basic construction completed',
-    content: ['BlogBriefs half completed',
-      'BlogsPage half completed',
-      'ContactPage half completed',
-      'Add the Blur effect and ScaleBoll effect to make the page switch smoothly'],
+    content: ['BlogBriefs half completed', 'BlogsPage half completed', 'ContactPage half completed', 'Add smooth effects'],
     timestamp: '2024/9/30',
-    color: 'red',
-    size: 'large',
+    color: 'bg-red-400'
   },
   {
     title: 'Basic construction completed',
-    content: ['ProfilesPage half completed',
-      'Further improve the blog page',
-      'BlogBriefs completed'],
+    content: ['ProfilesPage half completed', 'Improve blog page', 'BlogBriefs completed'],
     timestamp: '2024/10/1',
-    size: 'large',
-    color: 'lightgreen',
+    color: 'bg-green-300'
   },
   {
     title: 'Basic construction completed',
-    content: ['Achieve the basic encrypt',
-      'Add the Poetry page and complete it',
-      'Encapsulated dynamic background components'],
+    content: ['Achieve basic encrypt', 'Add Poetry page', 'Dynamic background components'],
     timestamp: '2024/10/3',
-    type: 'primary',
-    hollow: true,
+    color: 'bg-blue-500'
   },
   {
     title: 'Refactor Work',
-    content: ['Refactor the BlogsPage',
-      'Refactor some components and pages',
-      'Encapsulated the markdown components'],
-    size: 'large',
-    timestamp: '2024/10/4',
+    content: ['Refactor BlogsPage', 'Refactor components', 'Markdown components'],
+    timestamp: '2024/10/4'
   },
   {
     title: 'Basic construction completed',
-    content: ['Add the LifeChips components',
-      'Almost completed the LifeChipPhoto and LifeChipVideo components',
-      'Improve the linux initial bash script'],
-    size: 'large',
-    timestamp: '2024/10/6',
+    content: ['Add LifeChips', 'LifeChipPhoto/Video components', 'Improve linux bash script'],
+    timestamp: '2024/10/6'
   },
   {
     title: 'Basic construction completed',
-    content: ['Continue to improve the lifeChips components'],
-    size: 'large',
-    timestamp: '2024/10/7',
-  }, {
+    content: ['Continue improving LifeChips'],
+    timestamp: '2024/10/7'
+  },
+  {
     title: 'Refactor Work',
-    content: [
-      'Refactor the Homepage',
-      'Refactor SwitchBoll(smooth switch effect)',
-    ],
-    timestamp: '2024/10/13',
-  }, {
+    content: ['Refactor Homepage', 'Refactor smooth switch effect'],
+    timestamp: '2024/10/13'
+  },
+  {
     title: 'Basic construction completed',
-    content: [
-      'Add the UniversalPage',
-      'Add the UniversalBlogBrief',
-      'Add the SpecialBack',
-      'Configured SSL',],
-    timestamp: '2024/10/15',
-  }, {
+    content: ['UniversalPage', 'UniversalBlogBrief', 'SpecialBack', 'Configured SSL'],
+    timestamp: '2024/10/15'
+  },
+  {
     title: 'Basic construction completed',
-    content: [
-      'Add the VisitorLoginPage',
-      'Add the VisitorRegisterPage',
-      'Add the JwtToken authentication',
-      'Add the Various api',
-    ],
-    color: 'green',
+    content: ['Visitor login/register', 'JwtToken auth', 'Various API'],
     timestamp: '2024/10/17',
+    color: 'bg-green-500'
   },
   {
     title: 'Basic construction completed',
-    content: [
-      'Add the EmailVerify(backend)',
-      'Add the VisitorPage',
-      'Add the VisitorPageApi'
-    ],
-    color: 'green',
+    content: ['EmailVerify backend', 'VisitorPage', 'VisitorPageApi'],
     timestamp: '2024/10/19',
-  }, {
+    color: 'bg-green-500'
+  },
+  {
     title: 'Refactor Work',
-    content: [
-      'Refactor the Homepage Profile',
-    ],
-    color: 'green',
-    timestamp: '2024/10/31',
-  }, {
+    content: ['Refactor Homepage Profile'],
+    timestamp: '2024/10/31'
+  },
+  {
     title: 'Refactor Work',
-    content: [
-      'Refactor the RecentPage and others',
-      'Complete the BackendAPI',
-    ],
-    color: 'green',
-    timestamp: '2024/11/3',
-  }, {
+    content: ['Refactor RecentPage', 'Complete BackendAPI'],
+    timestamp: '2024/11/3'
+  },
+  {
     title: 'Refactor Work',
-    content: [
-      'Refactor the The Project',
-      'Change the mysql to sqlite3',
-      'Refactor Some transition with router interceptor',
-      'Replace the system fonts with self fonts'
-    ],
-    color: 'green',
-    timestamp: '2025/4/24',
+    content: ['Refactor Project', 'Change mysql → sqlite3', 'Router interceptor transitions', 'Custom fonts'],
+    timestamp: '2025/4/24'
   }
 ]
 
-// back to home function
-
-const now = ref(formatDate(new Date()));
+const now = ref(formatDate(new Date()))
 setInterval(() => {
-  now.value = formatDate(new Date());
-  console.log(now.value);
-}, 1000);
-
+  now.value = formatDate(new Date())
+}, 1000)
 </script>
 
 <style scoped>
-
-.container {
-  position: relative;
-  top: 20px;
-  height: auto;
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  padding: 40px;
-}
-
-.el-card {
-  text-align: left;
-  background: rgb(0, 0, 0, 0.5);
-  color: white;
-}
-
-.el-timeline {
-  position: relative;
-  color: white;
-  top: 10px;
-  left: -50px;
-
-  :deep(.el-timeline-item__content) {
-    color: white;
-  }
-
-  :deep(.el-timeline-item__timestamp) {
-    color: white;
-    margin-bottom: 20px;
-  }
-}
 </style>

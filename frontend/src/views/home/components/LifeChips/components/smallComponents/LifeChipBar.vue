@@ -1,14 +1,14 @@
 <template>
   <div class="ChipBg"></div>
   <div class="LifeChipBar">
-    <div ref="headsetEle"><el-icon v-if="props.chipBar.headset" ><Headset/></el-icon></div>
+    <!-- <div ref="headsetEle"><el-icon v-if="props.chipBar.headset" ><Headset/></el-icon></div>
     <div ref="commentEle"><el-icon v-if="props.chipBar.comment"><Comment /></el-icon></div>
-    <div ref="shareEle"><el-icon v-if="props.chipBar.share"><Share /></el-icon></div>
+    <div ref="shareEle"><el-icon v-if="props.chipBar.share"><Share /></el-icon></div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-import {Comment,Share,Headset} from '@element-plus/icons-vue'
+// import {Comment,Share,Headset} from '@element-plus/icons-vue'
 import {onMounted, ref} from "vue";
 interface ChipBar {
   headset?: boolean;

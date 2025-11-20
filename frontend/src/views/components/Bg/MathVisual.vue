@@ -5,7 +5,7 @@
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass';
@@ -14,13 +14,16 @@ let renderer, scene, camera, composer, controls;
 let rafId;
 let group;           // ★ attractor group
 let trajectories = []; // ★ store all line + star
+let stop = false;
 
 onMounted(() => {
     init();
+    stop = false;
     animate();
 });
 
 onBeforeUnmount(() => {
+    stop = true;
     cancelAnimationFrame(rafId);
     composer?.dispose();
     renderer?.dispose();
@@ -45,9 +48,9 @@ function init() {
     renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.06;
+    // controls = new OrbitControls(camera, renderer.domElement);
+    // controls.enableDamping = true;
+    // controls.dampingFactor = 0.06;
 
     composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
@@ -57,7 +60,7 @@ function init() {
     scene.add(group);
 
     generateTrajectories();
-    controls.enabled = false;
+    // controls.enabled = false;
 
     window.addEventListener("resize", onResize);
 }
@@ -216,6 +219,7 @@ function updateStars() {
 // ANIMATE
 // ------------------------------------------------------
 function animate() {
+    if (stop) return;
     rafId = requestAnimationFrame(animate);
 
     const radius = 10;
@@ -227,9 +231,8 @@ function animate() {
     camera.position.z = Math.sin(t) * radius;
     camera.lookAt(0, 0, 0); 
 
-    controls.update();
     updateStars();
-    controls.update();
+    // controls.update();
     composer.render();
 }
 </script>

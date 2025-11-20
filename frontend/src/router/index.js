@@ -1,4 +1,3 @@
-import { pa } from 'element-plus/es/locale/index.mjs'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -20,18 +19,7 @@ const routes = [
                 path: '/works',
                 component: () => import('../views/components/Nav/components/UniversalNav.vue'),
                 children: [
-                    {
-                        name: 'JS',
-                        path: '/JS',
-                        component: () => import('../views/works/JS/JSPage.vue'),
-                        meta: { title: 'JS' }
-                    },
-                    {
-                        name: 'OpenGL',
-                        path: '/OpenGL',
-                        component: () => import('../views/works/C++/C++Page.vue'),
-                        meta: { title: 'OpenGL(C/C++)' }
-                    }, {
+                   {
                         name: 'Tech',
                         path: '/Tech',
                         component: () => import('../views/works/Tech/techPage.vue'),
@@ -41,12 +29,7 @@ const routes = [
                         path: '/Projects',
                         component: () => import('../views/works/Projects/ProjectsPage.vue'),
                         meta: { title: 'Projects' }
-                    }, {
-                        path: "/projects/:id",
-                        name: "projectsDetail",
-                        component: () => import("../views/works/Projects/DetailProjectPage.vue"),
-                        props: true,
-                    },
+                    }
                     //     works routes
                 ]
             },
